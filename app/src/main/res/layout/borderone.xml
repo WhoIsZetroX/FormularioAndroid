@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent">
+    <item>
+        <shape android:shape="rectangle">
+            <!-- Color del borde azul-fuerte -->
+            <solid android:color="#333cef" />
+        </shape>
+    </item>
+    <item android:left="1dp" android:right="1dp" android:top="1dp" android:bottom="1dp">
+        <shape android:shape="rectangle">
+            <!-- Color del fondo azul-claro -->
+            <solid android:color="#E0F8F3" />
+        </shape>
+    </item>
+</layer-list>
