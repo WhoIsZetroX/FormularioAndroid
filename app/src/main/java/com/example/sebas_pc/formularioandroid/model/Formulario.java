@@ -4,6 +4,7 @@ package com.example.sebas_pc.formularioandroid.model;
  * Created by SEBAS-PC on 09/01/2018.
  */
 
+//FORMULARIO
 public class Formulario {
     public String postKey;
     public String AAdhForm;
