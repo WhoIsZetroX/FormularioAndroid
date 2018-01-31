@@ -20,15 +20,13 @@ public class Formulario {
     public String ALfamiliar;
     public String AMtipus;
     public String ANtipusF;
-    public String AOdesc;
-    public String APobservaciones;
+    public String AOobservaciones;
     public String AQimg;
 
 
     public Formulario(String dhForm, String id_movil, String DNI, String nombre, String apellidos,
                       String inici, String fi, String hores, String destinatari, String ambit,
-                      String familiar, String tipus, String tipusF, String desc,
-                      String observaciones, String img) {
+                      String familiar, String tipus, String tipusF, String img) {
 
         this.AAdhForm = dhForm;
         this.ABid_movil = id_movil;
@@ -43,8 +41,6 @@ public class Formulario {
         this.ALfamiliar = familiar;
         this.AMtipus = tipus;
         this.ANtipusF = tipusF;
-        this.AOdesc = desc;
-        this.APobservaciones = observaciones;
         this.AQimg = img;
 
     }
@@ -78,8 +74,6 @@ public class Formulario {
                 + "\n12- " + ALfamiliar
                 + "\n13- " + AMtipus
                 + "\n14- " + ANtipusF
-                + "\n15- " + AOdesc
-                + "\n16- " + APobservaciones
                 + "\n   --------------\n\n";
     }
 

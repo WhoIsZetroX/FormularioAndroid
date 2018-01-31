@@ -9,162 +9,127 @@
     android:paddingLeft="16dp"
     android:paddingRight="16dp"
     android:paddingTop="16dp"
+    android:background="#DCFFFA"
     tools:context="com.example.sebas_pc.formularioandroid.view.NewPostActivity">
 
     <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_width="368dp"
+        android:layout_height="511dp">
 
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <LinearLayout
-                android:layout_width="360dp"
-                android:layout_height="114dp">
+            <android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
+                android:layout_width="322dp"
+                android:layout_height="321dp"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/rectangle"
+                android:orientation="vertical"
+                card_view:cardElevation="6dp">
 
                 <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="15dp"
-                        android:background="@android:color/black"
-                        android:text="DATA/HORA FORMULARI"
-                        android:textColor="@android:color/background_light" />
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="30dp"
-                        android:background="@android:color/black"
-                        android:text="IDENTIFICACIÓ MOBIL: "
-                        android:textColor="@android:color/background_light" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="186dp"
-                    android:layout_height="match_parent"
-                    android:layout_marginLeft="11dp"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:id="@+id/hora"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="15dp" />
-
-                    <TextView
-                        android:id="@+id/identificacio"
-                        android:layout_width="match_parent"
-                        android:layout_height="50dp"
-                        android:layout_marginTop="13dp" />
-
-                </LinearLayout>
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="328dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:background="@layout/borderone"
-                android:orientation="vertical">
-
-                <LinearLayout
-                    android:layout_width="326dp"
-                    android:layout_height="match_parent"
+                    android:layout_width="match_parent"
+                    android:layout_height="350dp"
                     android:orientation="horizontal">
 
                     <LinearLayout
-                        android:layout_width="115dp"
+                        android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/dades"
+                            android:layout_width="95dp"
+                            android:layout_height="40dp"
+                            android:layout_gravity="center"
+                            android:layout_marginTop="16dp"
+                            android:text="DADES"
+                            android:textColor="@android:color/holo_red_light"
+                            android:textSize="25sp"
+                            android:textStyle="normal|bold" />
 
                         <TextView
                             android:id="@+id/textView16"
-                            android:layout_width="match_parent"
-                            android:layout_height="40dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
                             android:layout_marginLeft="15dp"
                             android:layout_marginTop="16dp"
-                            android:text="DNI: "
+                            android:text="DNI *"
                             android:textSize="15sp" />
-
-                        <TextView
-                            android:id="@+id/tv_name"
-                            android:layout_width="match_parent"
-                            android:layout_height="40dp"
-                            android:layout_marginLeft="15dp"
-                            android:layout_marginTop="3dp"
-                            android:text="NOM:"
-                            android:textSize="15sp" />
-
-                        <TextView
-                            android:id="@+id/textView14"
-                            android:layout_width="match_parent"
-                            android:layout_height="40dp"
-                            android:layout_marginLeft="15dp"
-                            android:layout_marginTop="1dp"
-                            android:text="COGNOM:"
-                            android:textSize="15sp" />
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="216dp"
-                        android:layout_height="match_parent"
-                        android:orientation="vertical">
 
                         <EditText
                             android:id="@+id/et_persondni"
-                            android:layout_width="137dp"
+                            android:layout_width="170dp"
                             android:layout_height="40dp"
-                            android:layout_marginLeft="20dp"
-                            android:layout_marginTop="2dp"
+                            android:layout_marginLeft="15dp"
+                            android:background="@layout/bordertwo"
                             android:inputType="textCapCharacters"
-                            android:maxLength="9" />
+                            android:maxLength="9"
+                            android:padding="10dp" />
+
+                        <TextView
+                            android:id="@+id/tv_name"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="15dp"
+                            android:layout_marginTop="10dp"
+                            android:text="NOM *"
+                            android:textSize="15sp" />
+
 
                         <EditText
                             android:id="@+id/et_personName"
-                            android:layout_width="137dp"
+                            android:layout_width="170dp"
                             android:layout_height="40dp"
-
-                            android:layout_marginLeft="20dp"
+                            android:layout_marginLeft="15dp"
                             android:layout_marginTop="2dp"
-                            android:inputType="textPersonName" />
+                            android:background="@layout/bordertwo"
+                            android:inputType="textPersonName"
+                            android:padding="10dp" />
+
+                        <TextView
+                            android:id="@+id/textView14"
+                            android:layout_width="79dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="15dp"
+                            android:layout_marginTop="10dp"
+                            android:text="COGNOM *"
+                            android:textSize="15sp" />
 
                         <EditText
                             android:id="@+id/et_personlastName"
-                            android:layout_width="137dp"
+                            android:layout_width="170dp"
                             android:layout_height="40dp"
-                            android:layout_marginLeft="20dp"
-                            android:layout_marginTop="1dp"
-                            android:inputType="textPersonName" />
+                            android:layout_marginLeft="15dp"
+                            android:layout_marginTop="2dp"
+                            android:background="@layout/bordertwo"
+                            android:inputType="textPersonName"
+                            android:padding="10dp" />
 
                     </LinearLayout>
                 </LinearLayout>
-            </LinearLayout>
+            </android.support.v7.widget.CardView>
 
             <!-- -->
 
-            <LinearLayout
-                android:layout_width="328dp"
+            <android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
+                android:layout_width="322dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:background="@layout/borderone"
-                android:orientation="vertical">
+                android:layout_marginTop="20dp"
+                android:background="@drawable/rectangle"
+                android:orientation="vertical"
+                card_view:cardElevation="6dp">
 
                 <LinearLayout
                     android:layout_width="326dp"
-                    android:layout_height="360dp"
+                    android:layout_height="790dp"
                     android:orientation="horizontal">
 
                     <LinearLayout
-                        android:layout_width="120dp"
-                        android:layout_height="match_parent"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
                         android:orientation="vertical">
 
                         <TextView
@@ -172,18 +137,38 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="15dp"
-                            android:layout_marginTop="50dp"
-                            android:text="DATA INICI: "
+                            android:layout_marginTop="45dp"
+                            android:text="DATA INICI *"
                             android:textSize="15sp" />
+
+                        <DatePicker
+                            android:id="@+id/datePicker"
+                            android:layout_width="326dp"
+                            android:layout_height="126dp"
+                            android:layout_marginLeft="-20dp"
+                            android:calendarViewShown="false"
+                            android:datePickerMode="spinner"
+                            android:scaleX="1"
+                            android:scaleY="1" />
 
                         <TextView
                             android:id="@+id/tv_name0"
                             android:layout_width="153dp"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="15dp"
-                            android:layout_marginTop="100dp"
-                            android:text="DATA FINAL:"
+                            android:layout_marginTop="45dp"
+                            android:text="DATA FINAL *"
                             android:textSize="15sp" />
+
+                        <DatePicker
+                            android:id="@+id/datePicker2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="118dp"
+                            android:layout_marginLeft="20dp"
+                            android:calendarViewShown="false"
+                            android:datePickerMode="spinner"
+                            android:scaleX="1"
+                            android:scaleY="1" />
 
                         <TextView
                             android:id="@+id/textView140"
@@ -191,8 +176,19 @@
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="15dp"
                             android:layout_marginTop="57dp"
-                            android:text="NUM HORES:"
+                            android:padding="10dp"
+                            android:text="NUM HORES *"
                             android:textSize="15sp" />
+
+                        <EditText
+                            android:id="@+id/hores"
+                            android:layout_width="137dp"
+                            android:layout_height="40dp"
+                            android:layout_marginLeft="15dp"
+                            android:layout_marginTop="0dp"
+                            android:background="@layout/bordertwo"
+                            android:inputType="numberDecimal"
+                            android:padding="10dp" />
 
                         <TextView
                             android:id="@+id/textView1400"
@@ -200,61 +196,43 @@
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="15dp"
                             android:layout_marginTop="40dp"
-                            android:text="DESTINATARI:"
+                            android:text="DESTINATARI *"
                             android:textSize="15sp" />
 
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="216dp"
-                        android:layout_height="match_parent"
-                        android:orientation="vertical">
-
-                        <DatePicker
-                            android:id="@+id/datePicker"
-                            android:layout_width="wrap_content"
-                            android:layout_height="118dp"
-                            android:layout_marginLeft="-20dp"
-                            android:calendarViewShown="false"
-                            android:datePickerMode="spinner"
-                            android:scaleX="0.8"
-                            android:scaleY="0.8" />
-
-                        <DatePicker
-                            android:id="@+id/datePicker2"
-                            android:layout_width="wrap_content"
-                            android:layout_height="118dp"
-                            android:layout_marginLeft="-20dp"
-                            android:calendarViewShown="false"
-                            android:datePickerMode="spinner"
-                            android:scaleX="0.8"
-                            android:scaleY="0.8" />
-
-                        <EditText
-                            android:id="@+id/hores"
-                            android:layout_width="137dp"
-                            android:layout_height="40dp"
-                            android:layout_marginLeft="3dp"
-                            android:layout_marginTop="0dp"
-                            android:inputType="numberDecimal" />
-
-                        <EditText
+                        <Spinner
                             android:id="@+id/dest"
-                            android:layout_width="137dp"
+                            android:layout_width="197dp"
                             android:layout_height="40dp"
-                            android:layout_marginLeft="2dp"
+                            android:layout_marginLeft="25dp"
+                            android:layout_marginTop="22dp"
+                            android:inputType="textPersonName" />
+
+                        <TextView
+                            android:id="@+id/textView1401"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="15dp"
+                            android:layout_marginTop="40dp"
+                            android:text="ÁREA *"
+                            android:textSize="15sp" />
+
+                        <Spinner
+                            android:id="@+id/area"
+                            android:layout_width="197dp"
+                            android:layout_height="40dp"
+                            android:layout_marginLeft="25dp"
                             android:layout_marginTop="22dp"
                             android:inputType="textPersonName" />
 
                     </LinearLayout>
                 </LinearLayout>
-            </LinearLayout>
+            </android.support.v7.widget.CardView>
 
-            <LinearLayout
+            <android.support.v7.widget.CardView
                 android:layout_width="326dp"
-                android:layout_height="330dp"
+                android:layout_height="448dp"
                 android:layout_marginTop="20dp"
-                android:background="@layout/borderone"
+                android:background="@drawable/rectangle"
                 android:orientation="vertical">
 
 
@@ -263,12 +241,22 @@
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
 
+                    <TextView
+                        android:id="@+id/ambit_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginTop="40dp"
+                        android:text="AMBIT *"
+                        android:textSize="15sp" />
+
                     <Spinner
                         android:id="@+id/ambit"
-                        android:layout_width="match_parent"
+                        android:layout_width="257dp"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="8dp"
-                        android:layout_marginTop="8dp" />
+                        android:layout_marginLeft="25dp"
+                        android:layout_marginTop="20dp" />
 
                 </LinearLayout>
 
@@ -281,74 +269,77 @@
                         android:id="@+id/familiartv"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginTop="8dp"
+                        android:layout_marginLeft="30dp"
+                        android:layout_marginTop="130dp"
                         android:text="Familiar:" />
 
                     <EditText
                         android:id="@+id/familiar"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_width="159dp"
+                        android:layout_height="40dp"
                         android:layout_marginBottom="8dp"
                         android:layout_marginEnd="8dp"
                         android:layout_marginStart="8dp"
-                        android:layout_marginTop="8dp"
+                        android:layout_marginTop="130dp"
                         android:ems="10"
-                        android:hint="Nom"
+                        android:hint="ex: Avi"
                         android:inputType="textPersonName" />
 
                 </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/temps_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginTop="230dp"
+                        android:text="DURACIÓ *"
+                        android:textSize="15sp" />
 
                     <Spinner
                         android:id="@+id/tipus"
-                        android:layout_width="match_parent"
+                        android:layout_width="257dp"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="8dp"
+                        android:layout_marginLeft="25dp"
                         android:layout_marginTop="8dp" />
+
+                    <TextView
+                        android:id="@+id/lloc_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginTop="30dp"
+                        android:text="MOTIU *"
+                        android:textSize="15sp" />
 
                     <Spinner
                         android:id="@+id/finalT"
-                        android:layout_width="match_parent"
+                        android:layout_width="257dp"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="8dp"
+                        android:layout_marginLeft="25dp"
                         android:layout_marginTop="8dp" />
-
                 </LinearLayout>
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="78dp"
-                    android:orientation="horizontal">
-
-                    <EditText
-                        android:id="@+id/editTextDesc"
-                        android:layout_width="304dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginTop="10dp"
-                        android:ems="10"
-                        android:hint="Descripció"
-                        android:inputType="textMultiLine" />
-
-                </LinearLayout>
-            </LinearLayout>
+            </android.support.v7.widget.CardView>
 
             <LinearLayout
                 android:id="@+id/ll"
-                android:layout_width="335dp"
-                android:layout_height="205dp"
+                android:layout_width="341dp"
+                android:layout_height="288dp"
                 android:layout_marginTop="20dp"
                 android:orientation="vertical">
 
-                <LinearLayout
-                    android:layout_width="325dp"
-                    android:layout_height="wrap_content"
-                    android:background="@layout/borderone"
+                <android.support.v7.widget.CardView
+                    android:layout_width="326dp"
+                    android:layout_height="132dp"
+                    android:background="@drawable/rectangle"
                     android:orientation="vertical">
 
                     <TextView
@@ -357,51 +348,85 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="12dp"
                         android:layout_marginTop="12dp"
-                        android:text="OBSERVACIONS:"
+                        android:text="OBSERVACIONS"
                         android:textSize="15sp" />
 
                     <EditText
                         android:id="@+id/editTextObs"
-                        android:layout_width="312dp"
-                        android:layout_height="64dp"
+                        android:layout_width="289dp"
+                        android:layout_height="65dp"
                         android:layout_marginLeft="2dp"
-                        android:layout_marginTop="15dp"
+                        android:layout_marginTop="60dp"
                         android:inputType="textMultiLine" />
 
-                </LinearLayout>
+                </android.support.v7.widget.CardView>
+
+                <android.support.v7.widget.CardView
+                    android:layout_width="124dp"
+                    android:layout_height="46dp"
+                    android:layout_marginTop="15dp"
+                    android:background="@drawable/rectangle"
+                    android:orientation="horizontal">
+
+
+                    <TextView
+                        android:layout_width="73dp"
+                        android:layout_height="35dp"
+                        android:layout_alignParentLeft="true"
+                        android:layout_marginLeft="6dp"
+                        android:layout_marginTop="5dp"
+                        android:text="Enviar Justificant: " />
+
+                    <CheckBox
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_gravity="right"
+                        android:layout_marginTop="10dp" />
+
+                </android.support.v7.widget.CardView>
 
                 <LinearLayout
                     android:layout_width="322dp"
                     android:layout_height="500dp"
                     android:layout_marginTop="20dp"
-                    android:orientation="horizontal">
+                    android:orientation="vertical">
 
                     <ImageButton
                         android:id="@+id/button_camera"
                         android:layout_width="60dp"
                         android:layout_height="51dp"
-                        android:background="@layout/borderone"
+                        android:background="@drawable/rectangle"
                         app:srcCompat="@android:drawable/ic_menu_camera" />
 
                     <ImageView
                         android:id="@+id/imageView"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp"
                         android:adjustViewBounds="true"
-                        android:background="@layout/borderone"
-                        app:srcCompat="@android:drawable/ic_input_add" />
+                        android:background="@layout/borderone" />
 
                 </LinearLayout>
             </LinearLayout>
 
             <Button
                 android:id="@+id/btn_save"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_width="325dp"
+                android:layout_height="38dp"
                 android:layout_marginTop="20dp"
                 android:background="@color/colorPrimary"
-                android:text="Guardar"
+                android:text="Enviar"
+                android:textAlignment="center"
                 android:textColor="@android:color/background_light" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="90dp"
+                android:text="* Campos Obligatorios" />
+
         </LinearLayout>
     </ScrollView>
 </LinearLayout>

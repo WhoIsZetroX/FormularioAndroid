@@ -54,7 +54,7 @@ public class FormViewActivity extends AppCompatActivity {
                         Formulario formulario = dataSnapshot.getValue(Formulario.class);
                         tvContent.setText(formulario.toString());
                         if (formulario.AQimg.equals("null")) {
-                            tvContent2.setText("null :v");
+                            tvContent2.setText(" ");
                         }else {
                             tvContent2.setClickable(true);
                             tvContent2.setMovementMethod(LinkMovementMethod.getInstance());
@@ -72,7 +72,9 @@ public class FormViewActivity extends AppCompatActivity {
         fab1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(FormViewActivity.this, JustFormActivity.class));
+                Intent intent = new Intent(FormViewActivity.this, JustFormActivity.class);
+                intent.putExtra("formId", formId);
+                startActivity(intent);
             }
         });
 

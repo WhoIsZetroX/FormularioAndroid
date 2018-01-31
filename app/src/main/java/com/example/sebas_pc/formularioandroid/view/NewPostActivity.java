@@ -97,19 +97,15 @@ public class NewPostActivity extends AppCompatActivity implements DatePicker.OnD
         });
 
         //Obtenemos la hora en tiempo real
-        tv = (TextView) findViewById(R.id.hora);
         final String fecha = new SimpleDateFormat("EEEE, MMMM d, yyyy 'at' h:mm a").format(Calendar.getInstance().getTime());
-        tv.setText(fecha);
-
         //Obtenemos el fabricante y modelo del movil ademas de su ANDROID_ID
         String deviceName = android.os.Build.MANUFACTURER + " " + android.os.Build.MODEL;
         final TelephonyManager tm = (TelephonyManager) getBaseContext().getSystemService(Context.TELEPHONY_SERVICE);
         String androidId = "" + android.provider.Settings.Secure.getString(getContentResolver(), android.provider.Settings.Secure.ANDROID_ID);
 
         //Los mostramos
-        tv2 = (TextView) findViewById(R.id.identificacio);
-        String lala=deviceName + " " + androidId;
-        tv2.setText(lala);
+        final String lala = deviceName + " " + androidId;
+
 
         //Listener para hacer la foto
         findViewById(R.id.button_camera).setOnClickListener(new View.OnClickListener() {
@@ -123,20 +119,20 @@ public class NewPostActivity extends AppCompatActivity implements DatePicker.OnD
         findViewById(R.id.btn_save).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String dhForm = ((TextView) findViewById(R.id.hora)).getText().toString();
-                String id_movil = ((TextView) findViewById(R.id.identificacio)).getText().toString();
+                String dhForm = fecha;
+                String id_movil = lala;
                 String dni = ((EditText) findViewById(R.id.et_persondni)).getText().toString();
                 String nombre = ((EditText) findViewById(R.id.et_personName)).getText().toString();
                 String apellidos = ((EditText) findViewById(R.id.et_personlastName)).getText().toString();
-                String inici = datePicker.getDayOfMonth()+ "/" + (datePicker.getMonth()+1) + "/" +datePicker.getYear();
-                String fi = datePicker2.getDayOfMonth()+ "/" + (datePicker2.getMonth()+1) + "/" +datePicker2.getYear();
+                String inici = datePicker.getDayOfMonth() + "/" + (datePicker.getMonth() + 1) + "/" + datePicker.getYear();
+                String fi = datePicker2.getDayOfMonth() + "/" + (datePicker2.getMonth() + 1) + "/" + datePicker2.getYear();
                 String hores = ((EditText) findViewById(R.id.hores)).getText().toString();
-                String destinatari = ((EditText) findViewById(R.id.dest)).getText().toString();
+                String destinatari = ((Spinner) findViewById(R.id.dest)).getSelectedItem().toString();
+                String area = ((Spinner) findViewById(R.id.area)).getSelectedItem().toString();
                 String ambit = ((Spinner) findViewById(R.id.ambit)).getSelectedItem().toString();
                 String familiar = ((EditText) findViewById(R.id.familiar)).getText().toString();
                 String tipus = ((Spinner) findViewById(R.id.tipus)).getSelectedItem().toString();
                 String tipusF = ((Spinner) findViewById(R.id.finalT)).getSelectedItem().toString();
-                String desc = ((EditText) findViewById(R.id.editTextDesc)).getText().toString();
                 String observaciones = ((EditText) findViewById(R.id.editTextObs)).getText().toString();
 
                 if (TextUtils.isEmpty(dni)){
@@ -189,17 +185,16 @@ public class NewPostActivity extends AppCompatActivity implements DatePicker.OnD
                 formulario.ACdNI = dni;
                 formulario.ADnombre = nombre;
                 formulario.AEapellidos = apellidos;
-                formulario.AFinici  = inici;
-                formulario.AGfi  = fi;
+                formulario.AFinici = inici;
+                formulario.AGfi = fi;
                 formulario.AHhores = hores;
                 formulario.AIdestinatari = destinatari;
-                //formulario.AJarea = area;
+                formulario.AJarea = area;
                 formulario.AKambit = ambit;
                 formulario.ALfamiliar = familiar;
                 formulario.AMtipus = tipus;
                 formulario.ANtipusF = tipusF;
-                formulario.AOdesc = desc;
-                formulario.APobservaciones = observaciones;
+                formulario.AOobservaciones = observaciones;
 
 
                 if (photoConf) {
@@ -238,20 +233,21 @@ public class NewPostActivity extends AppCompatActivity implements DatePicker.OnD
                 //Variables para cada uno de los elementos del envio del mensaje
 
 
+                //Variables para cada uno de los elementos del envio del mensaje
                 //Variables de tipo String para escritura
-                String dni_m      = ((EditText) findViewById(R.id.et_persondni)).getText().toString();
-                String name_m     = ((EditText) findViewById(R.id.et_personName)).getText().toString();
-                String lastName_m   = ((EditText) findViewById(R.id.et_personlastName)).getText().toString();
-                String datepicker_m   = datePicker.getDayOfMonth() + "/" + (datePicker.getMonth() + 1) + "/" + datePicker.getYear();
-                String datepicker2_m   = datePicker2.getDayOfMonth() + "/" + (datePicker2.getMonth() + 1) + "/" + datePicker2.getYear();
-                String hores_m   = ((EditText) findViewById(R.id.hores)).getText().toString();
-                String dest_m   = ((EditText) findViewById(R.id.dest)).getText().toString();
-                String ambit_m   = ((Spinner) findViewById(R.id.ambit)).getSelectedItem().toString();
-                String familiar_m   = ((EditText) findViewById(R.id.familiar)).getText().toString();
-                String tipus_m   = ((Spinner) findViewById(R.id.tipus)).getSelectedItem().toString();
-                String finalT_m   = ((Spinner) findViewById(R.id.finalT)).getSelectedItem().toString();
-                String descripcio_m   = ((EditText) findViewById(R.id.editTextDesc)).getText().toString();
-                String observacions_m   = ((EditText) findViewById(R.id.editTextObs)).getText().toString();
+                String dni_m = ((EditText) findViewById(R.id.et_persondni)).getText().toString();
+                String name_m = ((EditText) findViewById(R.id.et_personName)).getText().toString();
+                String lastName_m = ((EditText) findViewById(R.id.et_personlastName)).getText().toString();
+                String datepicker_m = datePicker.getDayOfMonth() + "/" + (datePicker.getMonth() + 1) + "/" + datePicker.getYear();
+                String datepicker2_m = datePicker2.getDayOfMonth() + "/" + (datePicker2.getMonth() + 1) + "/" + datePicker2.getYear();
+                String hores_m = ((EditText) findViewById(R.id.hores)).getText().toString();
+                String dest_m = ((Spinner) findViewById(R.id.dest)).getSelectedItem().toString();
+                String area_m = ((Spinner) findViewById(R.id.area)).getSelectedItem().toString();
+                String ambit_m = ((Spinner) findViewById(R.id.ambit)).getSelectedItem().toString();
+                String familiar_m = ((EditText) findViewById(R.id.familiar)).getText().toString();
+                String tipus_m = ((Spinner) findViewById(R.id.tipus)).getSelectedItem().toString();
+                String finalT_m = ((Spinner) findViewById(R.id.finalT)).getSelectedItem().toString();
+                String observacions_m = ((EditText) findViewById(R.id.editTextObs)).getText().toString();
                 //String imagenmostrar   = your_message.getText().toString();
 
 
@@ -262,23 +258,23 @@ public class NewPostActivity extends AppCompatActivity implements DatePicker.OnD
 
                 if (ambit.equals("Familiar")){
                     // Se llena con datos
-                    sendEmail.setType("image/png");
+                    sendEmail.setType("plain/text");
                     sendEmail.putExtra(android.content.Intent.EXTRA_EMAIL, new String[]{"ftallers@fundaciotallers.org"});
                     sendEmail.putExtra(Intent.EXTRA_SUBJECT, subject);
                     sendEmail.putExtra(android.content.Intent.EXTRA_TEXT,
-                            "Dni:"+dni_m+'\n'
-                                    +"Nom:"+name_m+'\n'
-                                    +"Cognom:"+lastName_m+'\n'
-                                    +"Inici:"+datepicker_m+'\n'
-                                    +"Fi:"+datepicker2_m+'\n'
-                                    +"Hores:"+hores_m+'\n'
-                                    +"Destí:"+dest_m+'\n'
-                                    +"Ambit:"+ambit_m+'\n'
-                                    +"Familiar:"+familiar_m+'\n'
-                                    +"Lloc:"+tipus_m+'\n'
-                                    +"Motiu:"+finalT_m+'\n'
-                                    +"Descripció:"+descripcio_m+'\n'
-                                    +"Observacions:"+observacions_m);
+                            "Dni:" + dni_m + '\n'
+                                    + "Nom:" + name_m + '\n'
+                                    + "Cognom:" + lastName_m + '\n'
+                                    + "Inici:" + datepicker_m + '\n'
+                                    + "Fi:" + datepicker2_m + '\n'
+                                    + "Hores:" + hores_m + '\n'
+                                    + "Destinatari:" + dest_m + '\n'
+                                    + "Área" + area_m + '\n'
+                                    + "Ambit:" + ambit_m + '\n'
+                                    + "Familiar:" + familiar_m + '\n'
+                                    + "Duració:" + tipus_m + '\n'
+                                    + "Motiu:" + finalT_m + '\n'
+                                    + "Observacions:" + observacions_m);
                     if (photoConf) {
                         Uri file = Uri.fromFile(new File(cameraPhotoPath));
                         sendEmail.putExtra(Intent.EXTRA_STREAM, file);
@@ -291,22 +287,23 @@ public class NewPostActivity extends AppCompatActivity implements DatePicker.OnD
 
                 } else {
                     // Se llena con datos
-                    sendEmail.setType("image/png");
+                    sendEmail.setType("plain/text");
                     sendEmail.putExtra(android.content.Intent.EXTRA_EMAIL, new String[]{"ftallers@fundaciotallers.org"});
                     sendEmail.putExtra(Intent.EXTRA_SUBJECT, subject);
                     sendEmail.putExtra(android.content.Intent.EXTRA_TEXT,
-                            "Dni:"+dni+'\n'
-                                    +"Nom:"+name_m+'\n'
-                                    +"Cognom:"+lastName_m+'\n'
-                                    +"Inici:"+datepicker_m+'\n'
-                                    +"Fi:"+datepicker2_m+'\n'
-                                    +"Hores:"+hores_m+'\n'
-                                    +"Destí:"+dest_m+'\n'
-                                    +"Ambit:"+ambit_m+'\n'
-                                    +"Lloc:"+tipus_m+'\n'
-                                    +"Motiu:"+finalT_m+'\n'
-                                    +"Descripció:"+descripcio_m+'\n'
-                                    +"Observacions:"+observacions_m);
+                            "Dni:" + dni + '\n'
+                                    + "Nom:" + name_m + '\n'
+                                    + "Cognom:" + lastName_m + '\n'
+                                    + "Inici:" + datepicker_m + '\n'
+                                    + "Fi:" + datepicker2_m + '\n'
+                                    + "Hores:" + hores_m + '\n'
+                                    + "Destinatari:" + dest_m + '\n'
+                                    + "Área" + area_m + '\n'
+                                    + "Ambit:" + ambit_m + '\n'
+                                    + "Duració:" + tipus_m + '\n'
+                                    + "Motiu:" + finalT_m + '\n'
+                                    + "Observacions:" + observacions_m);
+
                     if (photoConf) {
                         Uri file = Uri.fromFile(new File(cameraPhotoPath));
                         sendEmail.putExtra(Intent.EXTRA_STREAM, file);
