@@ -317,6 +317,17 @@ public class NewPostActivity extends AppCompatActivity implements DatePicker.OnD
         });
 
         //Esto sera la parte de los Spinner, se abrirar unos al tiempo que otros se pondra invisibles
+        Spinner desti = findViewById(R.id.dest);
+        String[] itemsDesti = new String[]{"RRHH", "Cap de Departament"};
+        ArrayAdapter<String> adapterDesti = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, itemsDesti);
+        desti.setAdapter(adapterDesti);
+
+        Spinner area = findViewById(R.id.area);
+        String[] itemsArea = new String[]{"Jardinería", "Neteja", "Ooilf"};
+        ArrayAdapter<String> adapterArea = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, itemsArea);
+        area.setAdapter(adapterArea);
+
+        //Esto sera la parte de los Spinner, se abrirar unos al tiempo que otros se pondra invisibles
         Spinner ambit = findViewById(R.id.ambit);
         String[] itemsA = new String[]{"Personal", "Familiar"};
         ArrayAdapter<String> adapterA = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, itemsA);

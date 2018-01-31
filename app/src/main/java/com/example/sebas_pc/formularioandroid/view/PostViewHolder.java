@@ -17,13 +17,11 @@ import com.example.sebas_pc.formularioandroid.R;
 
 class PostViewHolder extends RecyclerView.ViewHolder {
     public TextView tvContent;
-    public TextView ivContent;
 
 
     public PostViewHolder(View itemView) {
         super(itemView);
         tvContent = itemView.findViewById(R.id.postText);
-        ivContent = itemView.findViewById(R.id.postImage);
 
 
     }
