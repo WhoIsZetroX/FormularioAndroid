@@ -162,7 +162,6 @@ public class FormViewActivity extends AppCompatActivity {
                                 final String formId = FirebaseDatabase.getInstance().getReference().child("formularios_anulados").push().getKey();
                                 FirebaseDatabase.getInstance().getReference().child("formularios_anulados").child(formId).setValue(formulari);
                                 mDatabase = FirebaseDatabase.getInstance().getReference();
-                                mDatabase.child(formId).removeValue();
                                 startActivity(new Intent(FormViewActivity.this, MainActivity.class));
                             }
                         })
