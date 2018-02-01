@@ -159,11 +159,10 @@ public class FormViewActivity extends AppCompatActivity {
                 builder.setMessage("Desea anular este formulario?")
                         .setPositiveButton("Si", new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int id) {
-                                final String formId = FirebaseDatabase.getInstance().getReference().child("formularios_anulados").push().getKey();
-                                FirebaseDatabase.getInstance().getReference().child("formularios_anulados").child(formId).setValue(formulari);
-                                mDatabase = FirebaseDatabase.getInstance().getReference();
-                                //prueba
-                                startActivity(new Intent(FormViewActivity.this, MainActivity.class));
+                                final String formIdA = FirebaseDatabase.getInstance().getReference().child("formularios_anulados").push().getKey();
+                                FirebaseDatabase.getInstance().getReference().child("formularios_anulados").child(formIdA).setValue(formulari);
+                                mDatabase.child("formularios").child(formId).removeValue();
+                                finish();
                             }
                         })
                         .setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
