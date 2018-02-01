@@ -40,7 +40,8 @@
         <activity android:name=".view.FormViewActivity" />
         <activity android:name=".view.JustFormActivity" />
         <activity android:name=".view.FormNullActivity" />
-        <activity android:name=".view.FormNullDetailActivity"></activity>
+        <activity android:name=".view.FormNullDetailActivity" />
+        <activity android:name=".view.FormViewJustActivity"></activity>
     </application>
 
 </manifest>

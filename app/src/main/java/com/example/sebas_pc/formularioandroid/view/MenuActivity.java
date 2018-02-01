@@ -16,7 +16,7 @@ import com.google.android.gms.tasks.Task;
 
 public class MenuActivity extends AppCompatActivity {
 
-    Button btnConsultar, btnEsribir, btnConsAnulados;
+    Button btnConsultar, btnEsribir, btnConsJustificados, btnConsAnulados;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,6 +25,7 @@ public class MenuActivity extends AppCompatActivity {
 
         btnConsultar=findViewById(R.id.btnC);
         btnEsribir=findViewById(R.id.btnE);
+        btnConsJustificados = findViewById(R.id.btnG);
         btnConsAnulados = findViewById(R.id.btnH);
 
         //Botón para consultar los formularios redactados
@@ -44,12 +45,12 @@ public class MenuActivity extends AppCompatActivity {
         });
 
         //Botón para consultar los formularios justificados
-        /*btnConsAnulados.setOnClickListener(new View.OnClickListener() {
+        btnConsJustificados.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(MenuActivity.this, FormNullActivity.class));
+                startActivity(new Intent(MenuActivity.this, FormViewJustActivity.class));
             }
-        });*/
+        });
 
         //Botón para consultar los formularios anulados
         btnConsAnulados.setOnClickListener(new View.OnClickListener() {

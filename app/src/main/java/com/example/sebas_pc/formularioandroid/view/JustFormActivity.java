@@ -1,6 +1,7 @@
 package com.example.sebas_pc.formularioandroid.view;
 
 import android.Manifest;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
@@ -10,6 +11,7 @@ import android.provider.MediaStore;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.content.FileProvider;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Html;
@@ -47,14 +49,17 @@ public class JustFormActivity extends AppCompatActivity {
     boolean photoConf = false;
     Button camera;
     ImageView imageView;
+    Formulario formulari = new Formulario();
+    Button btnEnviar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_just_form);
         tvContent = findViewById(R.id.tvContent);
         tvContent2 = findViewById(R.id.tvContent2);
-
+        btnEnviar = findViewById(R.id.btnEnviar);
         Intent intent = getIntent();
         Bundle bundle = intent.getExtras();
 
@@ -73,11 +78,85 @@ public class JustFormActivity extends AppCompatActivity {
                         tvContent.setText(formulario.toString());
                         if (formulario.AQimg.equals("null")) {
                             tvContent2.setText(" ");
+
+                            if (formulario.ALfamiliar == null) {
+                                formulari.AAdhForm = formulario.AAdhForm;
+                                formulari.ABid_movil = formulario.ABid_movil;
+                                formulari.ACdNI = formulario.ACdNI;
+                                formulari.ADnombre = formulario.ADnombre;
+                                formulari.AEapellidos = formulario.AEapellidos;
+                                formulari.AFinici = formulario.AFinici;
+                                formulari.AGfi = formulario.AGfi;
+                                formulari.AHhores = formulario.AHhores;
+                                formulari.AIdestinatari = formulario.AIdestinatari;
+                                formulari.AJarea = formulario.AJarea;
+                                formulari.AKambit = formulario.AKambit;
+                                formulari.AMtipus = formulario.AMtipus;
+                                formulari.ANtipusF = formulario.ANtipusF;
+                                formulari.AOobservaciones = formulario.AOobservaciones;
+
+                            } else {
+
+                                formulari.AAdhForm = formulario.AAdhForm;
+                                formulari.ABid_movil = formulario.ABid_movil;
+                                formulari.ACdNI = formulario.ACdNI;
+                                formulari.ADnombre = formulario.ADnombre;
+                                formulari.AEapellidos = formulario.AEapellidos;
+                                formulari.AFinici = formulario.AFinici;
+                                formulari.AGfi = formulario.AGfi;
+                                formulari.AHhores = formulario.AHhores;
+                                formulari.AIdestinatari = formulario.AIdestinatari;
+                                formulari.AJarea = formulario.AJarea;
+                                formulari.AKambit = formulario.AKambit;
+                                formulari.ALfamiliar = formulario.ALfamiliar;
+                                formulari.AMtipus = formulario.AMtipus;
+                                formulari.ANtipusF = formulario.ANtipusF;
+                                formulari.AOobservaciones = formulario.AOobservaciones;
+                            }
+
+
                         } else {
                             tvContent2.setClickable(true);
                             tvContent2.setMovementMethod(LinkMovementMethod.getInstance());
                             tvContent2.setText(Html.fromHtml("<a href='" + formulario.AQimg + "'> IMAGEN </a>"));
-                            // ...
+
+                            if (formulario.ALfamiliar == null) {
+                                formulari.AAdhForm = formulario.AAdhForm;
+                                formulari.ABid_movil = formulario.ABid_movil;
+                                formulari.ACdNI = formulario.ACdNI;
+                                formulari.ADnombre = formulario.ADnombre;
+                                formulari.AEapellidos = formulario.AEapellidos;
+                                formulari.AFinici = formulario.AFinici;
+                                formulari.AGfi = formulario.AGfi;
+                                formulari.AHhores = formulario.AHhores;
+                                formulari.AIdestinatari = formulario.AIdestinatari;
+                                formulari.AJarea = formulario.AJarea;
+                                formulari.AKambit = formulario.AKambit;
+                                formulari.AMtipus = formulario.AMtipus;
+                                formulari.ANtipusF = formulario.ANtipusF;
+                                formulari.AOobservaciones = formulario.AOobservaciones;
+                                formulari.AQimg = formulario.AQimg;
+
+                            } else {
+
+                                formulari.AAdhForm = formulario.AAdhForm;
+                                formulari.ABid_movil = formulario.ABid_movil;
+                                formulari.ACdNI = formulario.ACdNI;
+                                formulari.ADnombre = formulario.ADnombre;
+                                formulari.AEapellidos = formulario.AEapellidos;
+                                formulari.AFinici = formulario.AFinici;
+                                formulari.AGfi = formulario.AGfi;
+                                formulari.AHhores = formulario.AHhores;
+                                formulari.AIdestinatari = formulario.AIdestinatari;
+                                formulari.AJarea = formulario.AJarea;
+                                formulari.AKambit = formulario.AKambit;
+                                formulari.ALfamiliar = formulario.ALfamiliar;
+                                formulari.AMtipus = formulario.AMtipus;
+                                formulari.ANtipusF = formulario.ANtipusF;
+                                formulari.AOobservaciones = formulario.AOobservaciones;
+                                formulari.AQimg = formulario.AQimg;
+
+                            }
                         }
                     }
 
@@ -96,6 +175,31 @@ public class JustFormActivity extends AppCompatActivity {
 
 
         imageView = (ImageView) findViewById(R.id.image_view);
+
+        btnEnviar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(v.getContext());
+                builder.setMessage("Desea enviar este formulario?")
+                        .setPositiveButton("Si", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                final String formIdA = FirebaseDatabase.getInstance().getReference().child("formularios_justificados").push().getKey();
+                                FirebaseDatabase.getInstance().getReference().child("formularios_justificados").child(formIdA).setValue(formulari);
+                                mDatabase.child("formularios").child(formId).removeValue();
+                                startActivity(new Intent(JustFormActivity.this, MainActivity.class));
+                                finish();
+                            }
+                        })
+                        .setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                // User cancelled the dialog
+                            }
+                        });
+                // Create the AlertDialog object and return it
+                AlertDialog dialog = builder.create();
+                dialog.show();
+            }
+        });
 
 
     }
