@@ -72,9 +72,6 @@ public class NewPostActivity extends AppCompatActivity implements View.OnClickLi
     String cameraPhotoPath;
     private static final int PERMISSION_REQUEST_CODE = 1;
 
-    //DatePicker datePicker, datePicker2;
-    EditText iniciData;
-
     String photoName;
     boolean photoConf=false;
 
@@ -145,9 +142,8 @@ public class NewPostActivity extends AppCompatActivity implements View.OnClickLi
                 String dni = ((EditText) findViewById(R.id.et_persondni)).getText().toString();
                 String nombre = ((EditText) findViewById(R.id.et_personName)).getText().toString();
                 String apellidos = ((EditText) findViewById(R.id.et_personlastName)).getText().toString();
-                //String inici = datePicker.getDayOfMonth() + "/" + (datePicker.getMonth() + 1) + "/" + datePicker.getYear();
-                //String fi = datePicker2.getDayOfMonth() + "/" + (datePicker2.getMonth() + 1) + "/" + datePicker2.getYear();
-                //Date iniciDate = datePicker.
+                String inici = ((EditText) findViewById(R.id.efecha)).getText().toString();;
+                String fi = ((EditText) findViewById(R.id.efecha2)).getText().toString();
                 String hores = ((EditText) findViewById(R.id.hores)).getText().toString();
                 String destinatari = ((Spinner) findViewById(R.id.dest)).getSelectedItem().toString();
                 String area = ((Spinner) findViewById(R.id.area)).getSelectedItem().toString();
@@ -223,8 +219,8 @@ public class NewPostActivity extends AppCompatActivity implements View.OnClickLi
                 formulario.ACdNI = dni;
                 formulario.ADnombre = nombre;
                 formulario.AEapellidos = apellidos;
-                //formulario.AFinici = inici;
-                //formulario.AGfi = fi;
+                formulario.AFinici = inici;
+                formulario.AGfi = fi;
                 formulario.AHhores = hores;
                 formulario.AIdestinatari = destinatari;
                 formulario.AJarea = area;
@@ -276,8 +272,8 @@ public class NewPostActivity extends AppCompatActivity implements View.OnClickLi
                 String dni_m = ((EditText) findViewById(R.id.et_persondni)).getText().toString();
                 String name_m = ((EditText) findViewById(R.id.et_personName)).getText().toString();
                 String lastName_m = ((EditText) findViewById(R.id.et_personlastName)).getText().toString();
-                //String datepicker_m = datePicker.getDayOfMonth() + "/" + (datePicker.getMonth() + 1) + "/" + datePicker.getYear();
-                //String datepicker2_m = datePicker2.getDayOfMonth() + "/" + (datePicker2.getMonth() + 1) + "/" + datePicker2.getYear();
+                String inici_m = ((EditText) findViewById(R.id.efecha)).getText().toString();
+                String fi_m = ((EditText) findViewById(R.id.efecha2)).getText().toString();
                 String hores_m = ((EditText) findViewById(R.id.hores)).getText().toString();
                 String dest_m = ((Spinner) findViewById(R.id.dest)).getSelectedItem().toString();
                 String area_m = ((Spinner) findViewById(R.id.area)).getSelectedItem().toString();
@@ -300,19 +296,19 @@ public class NewPostActivity extends AppCompatActivity implements View.OnClickLi
                     sendEmail.putExtra(android.content.Intent.EXTRA_EMAIL, new String[]{"ftallers@fundaciotallers.org"});
                     sendEmail.putExtra(Intent.EXTRA_SUBJECT, subject);
                     sendEmail.putExtra(android.content.Intent.EXTRA_TEXT,
-                            "Dni:" + dni_m + '\n'
-                                    + "Nom:" + name_m + '\n'
-                                    + "Cognom:" + lastName_m + '\n'
-                                    //+ "Inici:" + datepicker_m + '\n'
-                                    //+ "Fi:" + datepicker2_m + '\n'
-                                    + "Hores:" + hores_m + '\n'
-                                    + "Destinatari:" + dest_m + '\n'
-                                    + "Área" + area_m + '\n'
-                                    + "Ambit:" + ambit_m + '\n'
-                                    + "Familiar:" + familiar_m + '\n'
-                                    + "Duració:" + tipus_m + '\n'
-                                    + "Motiu:" + finalT_m + '\n'
-                                    + "Observacions:" + observacions_m);
+                            "Dni: " + dni_m + '\n'
+                                    + "Nom: " + name_m + '\n'
+                                    + "Cognom: " + lastName_m + '\n'
+                                    + "Inici: " + inici_m + '\n'
+                                    + "Fi: " + fi_m + '\n'
+                                    + "Hores: " + hores_m + '\n'
+                                    + "Destinatari: " + dest_m + '\n'
+                                    + "Área: " + area_m + '\n'
+                                    + "Ambit: " + ambit_m + '\n'
+                                    + "Familiar: " + familiar_m + '\n'
+                                    + "Duració: " + tipus_m + '\n'
+                                    + "Motiu: " + finalT_m + '\n'
+                                    + "Observacions: " + observacions_m);
                     if (photoConf) {
                         Uri file = Uri.fromFile(new File(cameraPhotoPath));
                         sendEmail.putExtra(Intent.EXTRA_STREAM, file);
@@ -329,18 +325,18 @@ public class NewPostActivity extends AppCompatActivity implements View.OnClickLi
                     sendEmail.putExtra(android.content.Intent.EXTRA_EMAIL, new String[]{"ftallers@fundaciotallers.org"});
                     sendEmail.putExtra(Intent.EXTRA_SUBJECT, subject);
                     sendEmail.putExtra(android.content.Intent.EXTRA_TEXT,
-                            "Dni:" + dni + '\n'
-                                    + "Nom:" + name_m + '\n'
-                                    + "Cognom:" + lastName_m + '\n'
-                                    //+ "Inici:" + datepicker_m + '\n'
-                                    //+ "Fi:" + datepicker2_m + '\n'
-                                    + "Hores:" + hores_m + '\n'
-                                    + "Destinatari:" + dest_m + '\n'
-                                    + "Área" + area_m + '\n'
-                                    + "Ambit:" + ambit_m + '\n'
-                                    + "Duració:" + tipus_m + '\n'
-                                    + "Motiu:" + finalT_m + '\n'
-                                    + "Observacions:" + observacions_m);
+                            "Dni: " + dni + '\n'
+                                    + "Nom: " + name_m + '\n'
+                                    + "Cognom: " + lastName_m + '\n'
+                                    + "Inici: " + inici_m + '\n'
+                                    + "Fi: " + fi_m + '\n'
+                                    + "Hores: " + hores_m + '\n'
+                                    + "Destinatari: " + dest_m + '\n'
+                                    + "Área: " + area_m + '\n'
+                                    + "Ambit: " + ambit_m + '\n'
+                                    + "Duració: " + tipus_m + '\n'
+                                    + "Motiu: " + finalT_m + '\n'
+                                    + "Observacions: " + observacions_m);
 
                     if (photoConf) {
                         Uri file = Uri.fromFile(new File(cameraPhotoPath));
