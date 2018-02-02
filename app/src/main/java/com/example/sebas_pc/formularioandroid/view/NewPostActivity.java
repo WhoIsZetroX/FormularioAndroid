@@ -1,6 +1,8 @@
 package com.example.sebas_pc.formularioandroid.view;
 
 import android.Manifest;
+import android.app.DatePickerDialog;
+import android.app.TimePickerDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -34,6 +36,7 @@ import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.TimePicker;
 import android.widget.Toast;
 
 import com.example.sebas_pc.formularioandroid.R;
@@ -50,33 +53,51 @@ import com.google.firebase.storage.UploadTask;
 
 import java.io.File;
 import java.io.IOException;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
 import java.util.Date;
 
-public class NewPostActivity extends AppCompatActivity implements DatePicker.OnDateChangedListener {
+public class NewPostActivity extends AppCompatActivity implements View.OnClickListener {
 
-    static final String DATEPICKERYEAR = "DATEPICKERYEAR";
-    static final String DATEPICKERMONTH = "DATEPICKERMONTH";
-    static final String DATEPICKERDAY = "DATEPICKERDAY";
+    //static final String DATEPICKERYEAR = "DATEPICKERYEAR";
+    //static final String DATEPICKERMONTH = "DATEPICKERMONTH";
+    //static final String DATEPICKERDAY = "DATEPICKERDAY";
     TextView tv, tv2;
-    public String inici = DATEPICKERYEAR + "/" + DATEPICKERMONTH + "/" + DATEPICKERDAY;
-    public String fi = DATEPICKERYEAR + "/" + DATEPICKERMONTH + "/" + DATEPICKERDAY;
+    //public String inici = DATEPICKERYEAR + "/" + DATEPICKERMONTH + "/" + DATEPICKERDAY;
+    //public String fi = DATEPICKERYEAR + "/" + DATEPICKERMONTH + "/" + DATEPICKERDAY;
     LinearLayout linearLayout;
     String photoPath;
     String cameraPhotoPath;
     private static final int PERMISSION_REQUEST_CODE = 1;
 
-    DatePicker datePicker, datePicker2;
+    //DatePicker datePicker, datePicker2;
+    EditText iniciData;
 
     String photoName;
     boolean photoConf=false;
+
+    Button bfecha, bfecha2;
+    EditText efecha, efecha2;
+    private  int dia,mes,ano,hora,minutos;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_post);
+
+        findViews();
+
+        bfecha = (Button)findViewById(R.id.bfecha);
+        efecha = (EditText) findViewById(R.id.efecha);
+
+        bfecha2 = (Button)findViewById(R.id.bfecha2);
+        efecha2 = (EditText)findViewById(R.id.efecha2);
+
+        bfecha.setOnClickListener(this);
+        bfecha2.setOnClickListener(this);
 
         final String formId = FirebaseDatabase.getInstance().getReference().child("formularios").push().getKey();
 
@@ -124,8 +145,9 @@ public class NewPostActivity extends AppCompatActivity implements DatePicker.OnD
                 String dni = ((EditText) findViewById(R.id.et_persondni)).getText().toString();
                 String nombre = ((EditText) findViewById(R.id.et_personName)).getText().toString();
                 String apellidos = ((EditText) findViewById(R.id.et_personlastName)).getText().toString();
-                String inici = datePicker.getDayOfMonth() + "/" + (datePicker.getMonth() + 1) + "/" + datePicker.getYear();
-                String fi = datePicker2.getDayOfMonth() + "/" + (datePicker2.getMonth() + 1) + "/" + datePicker2.getYear();
+                //String inici = datePicker.getDayOfMonth() + "/" + (datePicker.getMonth() + 1) + "/" + datePicker.getYear();
+                //String fi = datePicker2.getDayOfMonth() + "/" + (datePicker2.getMonth() + 1) + "/" + datePicker2.getYear();
+                //Date iniciDate = datePicker.
                 String hores = ((EditText) findViewById(R.id.hores)).getText().toString();
                 String destinatari = ((Spinner) findViewById(R.id.dest)).getSelectedItem().toString();
                 String area = ((Spinner) findViewById(R.id.area)).getSelectedItem().toString();
@@ -140,7 +162,23 @@ public class NewPostActivity extends AppCompatActivity implements DatePicker.OnD
                     ((EditText) findViewById(R.id.et_persondni)).requestFocus();
                     return;
                 }
-/*
+
+                SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyyy");
+
+                /*
+                try {
+                    Date date1 = format.parse(inici);
+                    Date date2 = format.parse(fi);
+                    if (date1.compareTo(date2) <= 0) {
+
+                    }
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+
+                */
+
+                /*
                 if (TextUtils.isEmpty(name)){
                     nombre.setError("El nom es obligatori.");
                     nombre.requestFocus();
@@ -176,7 +214,7 @@ public class NewPostActivity extends AppCompatActivity implements DatePicker.OnD
                     descripcion.requestFocus();
                     return;
                 }
-*/
+                */
 
                 ///////////
                 final Formulario formulario = new Formulario();
@@ -185,8 +223,8 @@ public class NewPostActivity extends AppCompatActivity implements DatePicker.OnD
                 formulario.ACdNI = dni;
                 formulario.ADnombre = nombre;
                 formulario.AEapellidos = apellidos;
-                formulario.AFinici = inici;
-                formulario.AGfi = fi;
+                //formulario.AFinici = inici;
+                //formulario.AGfi = fi;
                 formulario.AHhores = hores;
                 formulario.AIdestinatari = destinatari;
                 formulario.AJarea = area;
@@ -238,8 +276,8 @@ public class NewPostActivity extends AppCompatActivity implements DatePicker.OnD
                 String dni_m = ((EditText) findViewById(R.id.et_persondni)).getText().toString();
                 String name_m = ((EditText) findViewById(R.id.et_personName)).getText().toString();
                 String lastName_m = ((EditText) findViewById(R.id.et_personlastName)).getText().toString();
-                String datepicker_m = datePicker.getDayOfMonth() + "/" + (datePicker.getMonth() + 1) + "/" + datePicker.getYear();
-                String datepicker2_m = datePicker2.getDayOfMonth() + "/" + (datePicker2.getMonth() + 1) + "/" + datePicker2.getYear();
+                //String datepicker_m = datePicker.getDayOfMonth() + "/" + (datePicker.getMonth() + 1) + "/" + datePicker.getYear();
+                //String datepicker2_m = datePicker2.getDayOfMonth() + "/" + (datePicker2.getMonth() + 1) + "/" + datePicker2.getYear();
                 String hores_m = ((EditText) findViewById(R.id.hores)).getText().toString();
                 String dest_m = ((Spinner) findViewById(R.id.dest)).getSelectedItem().toString();
                 String area_m = ((Spinner) findViewById(R.id.area)).getSelectedItem().toString();
@@ -265,8 +303,8 @@ public class NewPostActivity extends AppCompatActivity implements DatePicker.OnD
                             "Dni:" + dni_m + '\n'
                                     + "Nom:" + name_m + '\n'
                                     + "Cognom:" + lastName_m + '\n'
-                                    + "Inici:" + datepicker_m + '\n'
-                                    + "Fi:" + datepicker2_m + '\n'
+                                    //+ "Inici:" + datepicker_m + '\n'
+                                    //+ "Fi:" + datepicker2_m + '\n'
                                     + "Hores:" + hores_m + '\n'
                                     + "Destinatari:" + dest_m + '\n'
                                     + "Área" + area_m + '\n'
@@ -294,8 +332,8 @@ public class NewPostActivity extends AppCompatActivity implements DatePicker.OnD
                             "Dni:" + dni + '\n'
                                     + "Nom:" + name_m + '\n'
                                     + "Cognom:" + lastName_m + '\n'
-                                    + "Inici:" + datepicker_m + '\n'
-                                    + "Fi:" + datepicker2_m + '\n'
+                                    //+ "Inici:" + datepicker_m + '\n'
+                                    //+ "Fi:" + datepicker2_m + '\n'
                                     + "Hores:" + hores_m + '\n'
                                     + "Destinatari:" + dest_m + '\n'
                                     + "Área" + area_m + '\n'
@@ -404,11 +442,13 @@ public class NewPostActivity extends AppCompatActivity implements DatePicker.OnD
         //Para poner la fecha de IniciData y FinalData en forma de seleccion
 
         //Picker 1
-        datePicker= (DatePicker) findViewById(R.id.datePicker);
+
         // API >= 26
         //datePicker.updateDate(2000, 12, 31);
         //datePicker.setOnDateChangedListener(this);
-        datePicker.init(
+
+        /*
+           datePicker.init(
                 getPreferences(MODE_PRIVATE).getInt(DATEPICKERYEAR, datePicker.getYear()),
                 getPreferences(MODE_PRIVATE).getInt(DATEPICKERMONTH, datePicker.getMonth()),
                 getPreferences(MODE_PRIVATE).getInt(DATEPICKERDAY, datePicker.getDayOfMonth()),
@@ -425,10 +465,11 @@ public class NewPostActivity extends AppCompatActivity implements DatePicker.OnD
                 getPreferences(MODE_PRIVATE).getInt(DATEPICKERMONTH, datePicker.getMonth()),
                 getPreferences(MODE_PRIVATE).getInt(DATEPICKERDAY, datePicker.getDayOfMonth()),
                 this);
-
-
+        */
     }
 
+
+    /*
     //Metodo para el datepicker
     @Override
     public void onDateChanged(DatePicker datePicker, int year, int month, int day) {
@@ -443,6 +484,7 @@ public class NewPostActivity extends AppCompatActivity implements DatePicker.OnD
                 break;
         }
     }
+    */
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu){
@@ -575,4 +617,44 @@ public class NewPostActivity extends AppCompatActivity implements DatePicker.OnD
         setPicture();
     }
 
+
+    void findViews() {
+        //datePicker = findViewById(R.id.datePicker);
+        //iniciData = findViewById(R.id.iniciData);
+
+    }
+
+    @Override
+    public void onClick(View v) {
+        if(v == bfecha){
+            Calendar calendar = Calendar.getInstance();
+            int dia = calendar.get(Calendar.YEAR);
+            int mes = calendar.get(Calendar.MONTH);
+            int ano = calendar.get(Calendar.DATE);
+
+            DatePickerDialog datePickerDialog = new DatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {
+                @Override
+                public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+                    efecha.setText(dayOfMonth+"/"+(monthOfYear+1)+"/"+year);
+                }
+            }
+                    ,dia,mes,ano);
+            datePickerDialog.show();
+        } else if (v== bfecha2){
+            Calendar calendar = Calendar.getInstance();
+            int dia = calendar.get(Calendar.YEAR);
+            int mes = calendar.get(Calendar.MONTH);
+            int ano = calendar.get(Calendar.DATE);
+
+            DatePickerDialog datePickerDialog = new DatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {
+                @Override
+                public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+                    efecha2.setText(dayOfMonth+"/"+(monthOfYear+1)+"/"+year);
+                }
+            }
+                    ,dia,mes,ano);
+            datePickerDialog.show();
+        }
+
+    }
 }
