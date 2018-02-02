@@ -622,7 +622,7 @@ public class NewPostActivity extends AppCompatActivity implements View.OnClickLi
 
     @Override
     public void onClick(View v) {
-        if(v == bfecha){
+        if (v == bfecha || v == efecha) {
             Calendar calendar = Calendar.getInstance();
             int dia = calendar.get(Calendar.YEAR);
             int mes = calendar.get(Calendar.MONTH);
@@ -636,7 +636,7 @@ public class NewPostActivity extends AppCompatActivity implements View.OnClickLi
             }
                     ,dia,mes,ano);
             datePickerDialog.show();
-        } else if (v== bfecha2){
+        } else if (v == bfecha2 || v == efecha2) {
             Calendar calendar = Calendar.getInstance();
             int dia = calendar.get(Calendar.YEAR);
             int mes = calendar.get(Calendar.MONTH);
