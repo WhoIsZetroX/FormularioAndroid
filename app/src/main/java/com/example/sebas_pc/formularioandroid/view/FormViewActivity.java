@@ -20,7 +20,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-public class FormViewActivity extends AppCompatActivity{
+public class FormViewActivity extends AppCompatActivity {
     Formulario formulari = new Formulario();
     TextView tvContent, tvContent2;
     public String form;
@@ -39,7 +39,8 @@ public class FormViewActivity extends AppCompatActivity{
         Intent intent = getIntent();
         Bundle bundle = intent.getExtras();
 
-        if(bundle!=null) {
+        if(bundle!=null)
+        {
             form =(String) bundle.get("formId");
         }
         mDatabase = FirebaseDatabase.getInstance().getReference();
@@ -55,10 +56,10 @@ public class FormViewActivity extends AppCompatActivity{
                         if (formulario.AQimg.equals("null")) {
                             tvContent2.setText(" ");
 
-                            if (formulario.ALfamiliar == null){
+                            if (formulario.ALfamiliar == null) {
                                 formulari.AAdhForm = formulario.AAdhForm;
-                                formulari.ABid_movil= formulario.ABid_movil;
-                                formulari.ACdNI= formulario.ACdNI;
+                                formulari.ABid_movil = formulario.ABid_movil;
+                                formulari.ACdNI = formulario.ACdNI;
                                 formulari.ADnombre = formulario.ADnombre;
                                 formulari.AEapellidos = formulario.AEapellidos;
                                 formulari.AFinici = formulario.AFinici;
@@ -74,8 +75,8 @@ public class FormViewActivity extends AppCompatActivity{
                             } else {
 
                                 formulari.AAdhForm = formulario.AAdhForm;
-                                formulari.ABid_movil= formulario.ABid_movil;
-                                formulari.ACdNI= formulario.ACdNI;
+                                formulari.ABid_movil = formulario.ABid_movil;
+                                formulari.ACdNI = formulario.ACdNI;
                                 formulari.ADnombre = formulario.ADnombre;
                                 formulari.AEapellidos = formulario.AEapellidos;
                                 formulari.AFinici = formulario.AFinici;
@@ -96,10 +97,10 @@ public class FormViewActivity extends AppCompatActivity{
                             tvContent2.setMovementMethod(LinkMovementMethod.getInstance());
                             tvContent2.setText(Html.fromHtml("<a href='" + formulario.AQimg + "'> IMAGEN </a>"));
 
-                            if (formulario.ALfamiliar == null){
+                            if (formulario.ALfamiliar == null) {
                                 formulari.AAdhForm = formulario.AAdhForm;
-                                formulari.ABid_movil= formulario.ABid_movil;
-                                formulari.ACdNI= formulario.ACdNI;
+                                formulari.ABid_movil = formulario.ABid_movil;
+                                formulari.ACdNI = formulario.ACdNI;
                                 formulari.ADnombre = formulario.ADnombre;
                                 formulari.AEapellidos = formulario.AEapellidos;
                                 formulari.AFinici = formulario.AFinici;
@@ -116,8 +117,8 @@ public class FormViewActivity extends AppCompatActivity{
                             } else {
 
                                 formulari.AAdhForm = formulario.AAdhForm;
-                                formulari.ABid_movil= formulario.ABid_movil;
-                                formulari.ACdNI= formulario.ACdNI;
+                                formulari.ABid_movil = formulario.ABid_movil;
+                                formulari.ACdNI = formulario.ACdNI;
                                 formulari.ADnombre = formulario.ADnombre;
                                 formulari.AEapellidos = formulario.AEapellidos;
                                 formulari.AFinici = formulario.AFinici;
@@ -158,8 +159,10 @@ public class FormViewActivity extends AppCompatActivity{
                 builder.setMessage("Desea anular este formulario?")
                         .setPositiveButton("Si", new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int id) {
-                                final String formId = FirebaseDatabase.getInstance().getReference().child("formularios_anulados").push().getKey();
-                                FirebaseDatabase.getInstance().getReference().child("formularios_anulados").child(formId).setValue(formulari);
+                                final String formIdA = FirebaseDatabase.getInstance().getReference().child("formularios_anulados").push().getKey();
+                                FirebaseDatabase.getInstance().getReference().child("formularios_anulados").child(formIdA).setValue(formulari);
+                                mDatabase.child("formularios").child(formId).removeValue();
+                                finish();
                             }
                         })
                         .setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
