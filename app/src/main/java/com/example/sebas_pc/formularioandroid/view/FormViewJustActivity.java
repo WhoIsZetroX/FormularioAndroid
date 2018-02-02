@@ -78,7 +78,7 @@ public class FormViewJustActivity extends AppCompatActivity {
                 viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        Intent intent = new Intent(FormViewJustActivity.this, FormNullDetailActivity.class);
+                        Intent intent = new Intent(FormViewJustActivity.this, FormJustDetailActivity.class);
                         intent.putExtra("formId", postKey);
                         startActivity(intent);
                     }

@@ -50,7 +50,7 @@
                             android:textSize="25sp"
                             android:textStyle="normal|bold" />
 
-                        <!--<TextView
+                        <TextView
                             android:id="@+id/textView16"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -58,7 +58,7 @@
                             android:layout_marginTop="16dp"
                             android:text="DNI *"
                             android:textSize="15sp" />
-                        -->
+
                         <EditText
                             android:id="@+id/et_persondni"
                             android:layout_width="170dp"
@@ -67,8 +67,7 @@
                             android:background="@layout/bordertwo"
                             android:inputType="textCapCharacters"
                             android:maxLength="9"
-                            android:padding="10dp"
-                            android:hint="DNI"/>
+                            android:padding="10dp" />
 
                         <TextView
                             android:id="@+id/tv_name"
@@ -161,7 +160,7 @@
                                 android:layout_height="39dp"
                                 android:layout_marginLeft="15dp"
                                 android:layout_marginTop="24dp"
-                                android:hint="<-- Click "
+                                android:hint="Fecha"
                                 android:editable="false"/>
 
                         </LinearLayout>
@@ -427,7 +426,8 @@
                         android:layout_width="60dp"
                         android:layout_height="51dp"
                         android:background="@drawable/rectangle"
-                        app:srcCompat="@android:drawable/ic_menu_camera" />
+                        app:srcCompat="@android:drawable/ic_menu_camera"
+                        tools:ignore="VectorDrawableCompat" />
 
                     <ImageView
                         android:id="@+id/imageView"
