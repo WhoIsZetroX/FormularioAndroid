@@ -16,6 +16,7 @@ import com.google.android.gms.tasks.Task;
 
 public class MenuActivity extends AppCompatActivity {
 
+    //Menú2
     Button btnConsultar, btnEsribir, btnConsJustificados, btnConsAnulados;
 
     @Override
