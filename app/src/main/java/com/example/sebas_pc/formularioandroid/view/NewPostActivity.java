@@ -95,6 +95,8 @@ public class NewPostActivity extends AppCompatActivity implements View.OnClickLi
 
         bfecha.setOnClickListener(this);
         bfecha2.setOnClickListener(this);
+        efecha.setOnClickListener(this);
+        efecha2.setOnClickListener(this);
 
         final String formId = FirebaseDatabase.getInstance().getReference().child("formularios").push().getKey();
 
