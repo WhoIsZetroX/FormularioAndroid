@@ -204,7 +204,7 @@ public class NewPostActivity extends AppCompatActivity implements View.OnClickLi
         ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.CAMERA, Manifest.permission.READ_EXTERNAL_STORAGE}, PERMISSION_REQUEST_CODE);
 
     }
-
+// con este método de revisan los permisos
     private boolean checkPermission() {
         //Check for READ_EXTERNAL_STORAGE access, using ContextCompat.checkSelfPermission()//
         int result = ContextCompat.checkSelfPermission(NewPostActivity.this, Manifest.permission.READ_EXTERNAL_STORAGE);
@@ -219,6 +219,7 @@ public class NewPostActivity extends AppCompatActivity implements View.OnClickLi
         }
     }
 
+    // con este metodo se hacen las fotos cuando le das al botón
     void dispatchTakePictureIntent() {
         File dir = getExternalFilesDir(Environment.DIRECTORY_PICTURES);
         dir.mkdir();
@@ -253,6 +254,7 @@ public class NewPostActivity extends AppCompatActivity implements View.OnClickLi
         }
     }
 
+    // con este metodo se hace la foto
     void setPicture() {
         if (photoPath != null && !photoPath.isEmpty()) {
             LinearLayout view_instance = findViewById(R.id.ll);
@@ -265,6 +267,7 @@ public class NewPostActivity extends AppCompatActivity implements View.OnClickLi
         }
 
     }
+
 
     @Override
     public void onSaveInstanceState(Bundle outState) {
