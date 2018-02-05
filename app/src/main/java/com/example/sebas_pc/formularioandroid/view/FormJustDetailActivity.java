@@ -18,22 +18,27 @@ import com.google.firebase.database.ValueEventListener;
 
 public class FormJustDetailActivity extends AppCompatActivity {
 
+    // Creamos las variabless
     TextView tvContent, tvContent2;
     public String form;
     private DatabaseReference mDatabase;
+    Intent intent;
+    Bundle bundle;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_form_just_detail);
 
-        tvContent = findViewById(R.id.tvContent);
-        tvContent2 = findViewById(R.id.tvContent2);
+        // Vinculamos las variables con los objetos de la app con los findViewById
+        findViews();
 
-        Intent intent = getIntent();
-        Bundle bundle = intent.getExtras();
-
+        // Pillamos los datos que pasamos de la anterior activity que en este caso es la key del formulario
+        intent = getIntent();
+        bundle = intent.getExtras();
         if (bundle != null) {
+            // Si el contenido no es nulo pillamos la id
             form = (String) bundle.get("formId");
         }
         mDatabase = FirebaseDatabase.getInstance().getReference();
@@ -57,4 +62,10 @@ public class FormJustDetailActivity extends AppCompatActivity {
                     }
                 });
     }
+
+    void findViews() {
+        tvContent = findViewById(R.id.tvContent);
+        tvContent2 = findViewById(R.id.tvContent2);
+    }
+
 }

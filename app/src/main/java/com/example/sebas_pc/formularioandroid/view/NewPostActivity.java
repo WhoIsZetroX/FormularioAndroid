@@ -62,8 +62,8 @@ public class NewPostActivity extends AppCompatActivity implements View.OnClickLi
     String photoName;
     boolean photoConf = false;
     TelephonyManager tm;
-    TextView efecha, familiartv;
-    EditText efecha2, familiar;
+    TextView efecha, efecha2, familiartv;
+    EditText familiar;
     Button bfecha, bfecha2, save;
     ImageButton camera;
     LinearLayout linearLayout;
