@@ -46,14 +46,14 @@ public class FormViewActivity extends AppCompatActivity {
         mDatabase = FirebaseDatabase.getInstance().getReference();
 
         final String formId = form;
-        mDatabase.child("formularios").child(formId).addListenerForSingleValueEvent(
+        mDatabase.child("formularios_noJustificados").child(formId).addListenerForSingleValueEvent(
                 new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
                         // Get user value
                         Formulario formulario = dataSnapshot.getValue(Formulario.class);
                         tvContent.setText(formulario.toString());
-                        if (formulario.AQimg.equals("null")) {
+                        if (formulario.ARimg.equals("null")) {
                             tvContent2.setText(" ");
 
                             if (formulario.ALfamiliar == null) {
@@ -95,7 +95,7 @@ public class FormViewActivity extends AppCompatActivity {
                         }else {
                             tvContent2.setClickable(true);
                             tvContent2.setMovementMethod(LinkMovementMethod.getInstance());
-                            tvContent2.setText(Html.fromHtml("<a href='" + formulario.AQimg + "'> IMAGEN </a>"));
+                            tvContent2.setText(Html.fromHtml("<a href='" + formulario.ARimg + "'> IMAGEN </a>"));
 
                             if (formulario.ALfamiliar == null) {
                                 formulari.AAdhForm = formulario.AAdhForm;
@@ -112,7 +112,7 @@ public class FormViewActivity extends AppCompatActivity {
                                 formulari.AMtipus = formulario.AMtipus;
                                 formulari.ANtipusF = formulario.ANtipusF;
                                 formulari.AOobservaciones = formulario.AOobservaciones;
-                                formulari.AQimg = formulario.AQimg;
+                                formulari.ARimg = formulario.ARimg;
 
                             } else {
 
@@ -131,7 +131,7 @@ public class FormViewActivity extends AppCompatActivity {
                                 formulari.AMtipus = formulario.AMtipus;
                                 formulari.ANtipusF = formulario.ANtipusF;
                                 formulari.AOobservaciones = formulario.AOobservaciones;
-                                formulari.AQimg = formulario.AQimg;
+                                formulari.ARimg = formulario.ARimg;
 
                             }
                         }
@@ -162,7 +162,7 @@ public class FormViewActivity extends AppCompatActivity {
                             public void onClick(DialogInterface dialog, int id) {
                                 final String formIdA = FirebaseDatabase.getInstance().getReference().child("formularios_anulados").push().getKey();
                                 FirebaseDatabase.getInstance().getReference().child("formularios_anulados").child(formIdA).setValue(formulari);
-                                mDatabase.child("formularios").child(formId).removeValue();
+                                mDatabase.child("formularios_noJustificados").child(formId).removeValue();
                                 finish();
                             }
                         })

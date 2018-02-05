@@ -25,6 +25,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -57,18 +58,17 @@ public class NewPostActivity extends AppCompatActivity implements View.OnClickLi
     private static final int PERMISSION_REQUEST_CODE = 1;
     String photoPath;
     String cameraPhotoPath;
-    String deviceName, androidId, formId, dhForm, idMovil, dni, nombre, apellidos, finici, ffi, hores, sDest, sArea, sAmbit, sPersonal, sFamiliar, sTipus, sTipusF, imag, observaciones;
+    String deviceName, androidId, formId, dhForm, idMovil;
     String photoName;
-    private  int dia,mes,ano,hora,minutos;
     boolean photoConf = false;
     TelephonyManager tm;
-    TextView tv, tv2;
-    TextView efecha, familiartv;
-    EditText efecha2, familiar;
+    TextView efecha, efecha2, familiartv;
+    EditText familiar;
     Button bfecha, bfecha2, save;
     ImageButton camera;
     LinearLayout linearLayout;
     Spinner desti, area, ambit, tipus, finalT;
+    boolean check;
 
     String[] itemsP;
     ArrayAdapter<String> adapterTP;
@@ -97,9 +97,7 @@ public class NewPostActivity extends AppCompatActivity implements View.OnClickLi
         setContentView(R.layout.activity_new_post);
 
         findViews();
-
         setOnClicks();
-
 
         itemsP = new String[]{"1 jornada", "Superior a una jornada"};
         adapterTP = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, itemsP);
@@ -122,7 +120,7 @@ public class NewPostActivity extends AppCompatActivity implements View.OnClickLi
         adapterA = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, itemsA);
 
         //Obtenemos la id del formulario que le pondremos al subirlo
-        formId = FirebaseDatabase.getInstance().getReference().child("formularios").push().getKey();
+        formId = FirebaseDatabase.getInstance().getReference().child("formularios_noJustificados").push().getKey();
         //Obtenemos la hora en tiempo real
         dhForm = new SimpleDateFormat("EEEE, MMMM d, yyyy 'at' h:mm a").format(Calendar.getInstance().getTime());
         //Obtenemos el fabricante y modelo del movil ademas de su ANDROID_ID
@@ -379,6 +377,8 @@ public class NewPostActivity extends AppCompatActivity implements View.OnClickLi
         String tipus = ((Spinner) findViewById(R.id.tipus)).getSelectedItem().toString();
         String tipusF = ((Spinner) findViewById(R.id.finalT)).getSelectedItem().toString();
         String observaciones = ((EditText) findViewById(R.id.editTextObs)).getText().toString();
+        final boolean check = ((CheckBox) findViewById(R.id.checkBox)).isChecked();
+
 
         if (TextUtils.isEmpty(dni)) {
             ((EditText) findViewById(R.id.et_persondni)).setError("El DNI es obligatori.");
@@ -441,6 +441,7 @@ public class NewPostActivity extends AppCompatActivity implements View.OnClickLi
         formulario.AMtipus = tipus;
         formulario.ANtipusF = tipusF;
         formulario.AOobservaciones = observaciones;
+        formulario.AQcheck = check;
 
 
         if (photoConf) {
@@ -457,28 +458,49 @@ public class NewPostActivity extends AppCompatActivity implements View.OnClickLi
                         public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                             // Get a URL to the uploaded content
                             Uri downloadUrl = taskSnapshot.getDownloadUrl();
-                            formulario.AQimg = downloadUrl.toString();
-                            FirebaseDatabase.getInstance().getReference().child("formularios").child(formId).setValue(formulario);
+                            formulario.ARimg = downloadUrl.toString();
+
+                            if (check == false){
+                                return;
+                            }
+
+                            else if (check == true){
+                                FirebaseDatabase.getInstance().getReference().child("formularios_justificados").child(formId).setValue(formulario);
+
+                            } else {
+                                FirebaseDatabase.getInstance().getReference().child("formularios_noJustificados").child(formId).setValue(formulario);
+                            }
                         }
                     })
                     .addOnFailureListener(new OnFailureListener() {
                         @Override
                         public void onFailure(@NonNull Exception exception) {
-                            formulario.AQimg = null;
-                            FirebaseDatabase.getInstance().getReference().child("formularios").child(formId).setValue(formulario);
+                            formulario.ARimg = null;
+
+                            if (check == false){
+                                return;
+                            }
+
+                            else if (check == true){
+                                FirebaseDatabase.getInstance().getReference().child("formularios_justificados").child(formId).setValue(formulario);
+
+                            } else {
+                                FirebaseDatabase.getInstance().getReference().child("formularios_noJustificados").child(formId).setValue(formulario);
+                            }
                         }
                     });
             //formulario.img = "imagenes/"+photoName;
 
         } else {
-            formulario.AQimg = "null";
-            FirebaseDatabase.getInstance().getReference().child("formularios").child(formId).setValue(formulario);
+            formulario.ARimg = "null";
+            if (check==false){
+                FirebaseDatabase.getInstance().getReference().child("formularios_noJustificados").child(formId).setValue(formulario);
+            }
+            else if (check == true){
+                return;
+            }
         }
         //String formId = FirebaseDatabase.getInstance().getReference().child("formularios").push().getKey();
-
-
-        //Variables para cada uno de los elementos del envio del mensaje
-
 
         //Variables para cada uno de los elementos del envio del mensaje
         //Variables de tipo String para escritura
@@ -495,6 +517,7 @@ public class NewPostActivity extends AppCompatActivity implements View.OnClickLi
         String tipus_m = ((Spinner) findViewById(R.id.tipus)).getSelectedItem().toString();
         String finalT_m = ((Spinner) findViewById(R.id.finalT)).getSelectedItem().toString();
         String observacions_m = ((EditText) findViewById(R.id.editTextObs)).getText().toString();
+        boolean check_m = ((CheckBox) findViewById(R.id.checkBox)).isChecked();
         //String imagenmostrar   = your_message.getText().toString();
 
 
@@ -521,7 +544,9 @@ public class NewPostActivity extends AppCompatActivity implements View.OnClickLi
                             + "Familiar: " + familiar_m + '\n'
                             + "Duració: " + tipus_m + '\n'
                             + "Motiu: " + finalT_m + '\n'
-                            + "Observacions: " + observacions_m);
+                            + "Observacions: " + observacions_m + '\n'
+                            + "Justificado: " + check_m);
+
             if (photoConf) {
                 Uri file = Uri.fromFile(new File(cameraPhotoPath));
                 sendEmail.putExtra(Intent.EXTRA_STREAM, file);
@@ -548,8 +573,8 @@ public class NewPostActivity extends AppCompatActivity implements View.OnClickLi
                             + "Ambit: " + ambit_m + '\n'
                             + "Duració: " + tipus_m + '\n'
                             + "Motiu: " + finalT_m + '\n'
-                            + "Observacions: " + observacions_m);
-
+                            + "Observacions: " + observacions_m + '\n'
+                            + "Justificado: " + check_m);
             if (photoConf) {
                 Uri file = Uri.fromFile(new File(cameraPhotoPath));
                 sendEmail.putExtra(Intent.EXTRA_STREAM, file);
@@ -579,8 +604,6 @@ public class NewPostActivity extends AppCompatActivity implements View.OnClickLi
                 // your code here
             }
         });
-
-
     }
 
     public void selectFamiliar() {

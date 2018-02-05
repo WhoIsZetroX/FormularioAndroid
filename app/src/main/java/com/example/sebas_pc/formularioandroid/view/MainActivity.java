@@ -6,8 +6,6 @@ import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.text.Html;
-import android.text.method.LinkMovementMethod;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -48,7 +46,7 @@ public class MainActivity extends AppCompatActivity  {
         id=android.provider.Settings.Secure.getString(getContentResolver(), android.provider.Settings.Secure.ANDROID_ID);
         idTel = deviceName+" "+id;
 
-        Query postsQuery = FirebaseDatabase.getInstance().getReference().child("formularios");
+        Query postsQuery = FirebaseDatabase.getInstance().getReference().child("formularios_noJustificados");
 
         FirebaseRecyclerOptions options = new FirebaseRecyclerOptions.Builder<Formulario>()
                 .setQuery(postsQuery, Formulario.class)

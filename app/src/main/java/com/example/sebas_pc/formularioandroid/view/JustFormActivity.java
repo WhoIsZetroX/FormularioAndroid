@@ -1,15 +1,11 @@
 package com.example.sebas_pc.formularioandroid.view;
 
-import android.Manifest;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Environment;
 import android.provider.MediaStore;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.content.ContextCompat;
 import android.support.v4.content.FileProvider;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -23,7 +19,6 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.sebas_pc.formularioandroid.R;
 import com.example.sebas_pc.formularioandroid.model.Formulario;
@@ -69,14 +64,14 @@ public class JustFormActivity extends AppCompatActivity {
         mDatabase = FirebaseDatabase.getInstance().getReference();
 
         final String formId = form;
-        mDatabase.child("formularios").child(formId).addListenerForSingleValueEvent(
+        mDatabase.child("formularios_noJustificados").child(formId).addListenerForSingleValueEvent(
                 new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
                         // Get user value
                         Formulario formulario = dataSnapshot.getValue(Formulario.class);
                         tvContent.setText(formulario.toString());
-                        if (formulario.AQimg.equals("null")) {
+                        if (formulario.ARimg.equals("null")) {
                             tvContent2.setText(" ");
 
                             if (formulario.ALfamiliar == null) {
@@ -118,7 +113,7 @@ public class JustFormActivity extends AppCompatActivity {
                         } else {
                             tvContent2.setClickable(true);
                             tvContent2.setMovementMethod(LinkMovementMethod.getInstance());
-                            tvContent2.setText(Html.fromHtml("<a href='" + formulario.AQimg + "'> IMAGEN </a>"));
+                            tvContent2.setText(Html.fromHtml("<a href='" + formulario.ARimg + "'> IMAGEN </a>"));
 
                             if (formulario.ALfamiliar == null) {
                                 formulari.AAdhForm = formulario.AAdhForm;
@@ -135,7 +130,8 @@ public class JustFormActivity extends AppCompatActivity {
                                 formulari.AMtipus = formulario.AMtipus;
                                 formulari.ANtipusF = formulario.ANtipusF;
                                 formulari.AOobservaciones = formulario.AOobservaciones;
-                                formulari.AQimg = formulario.AQimg;
+                                formulari.AQcheck = formulario.AQcheck;
+                                formulari.ARimg = formulario.ARimg;
 
                             } else {
 
@@ -154,7 +150,8 @@ public class JustFormActivity extends AppCompatActivity {
                                 formulari.AMtipus = formulario.AMtipus;
                                 formulari.ANtipusF = formulario.ANtipusF;
                                 formulari.AOobservaciones = formulario.AOobservaciones;
-                                formulari.AQimg = formulario.AQimg;
+                                formulari.AQcheck = formulario.AQcheck;
+                                formulari.ARimg = formulario.ARimg;
 
                             }
                         }
@@ -185,7 +182,7 @@ public class JustFormActivity extends AppCompatActivity {
                             public void onClick(DialogInterface dialog, int id) {
                                 final String formIdA = FirebaseDatabase.getInstance().getReference().child("formularios_justificados").push().getKey();
                                 FirebaseDatabase.getInstance().getReference().child("formularios_justificados").child(formIdA).setValue(formulari);
-                                mDatabase.child("formularios").child(formId).removeValue();
+                                mDatabase.child("formularios_noJustificados").child(formId).removeValue();
                                 finish();//TODO: hacer que vaya a la main
                             }
                         })
@@ -269,8 +266,4 @@ public class JustFormActivity extends AppCompatActivity {
         super.onResume();
         setPicture();
     }
-
-
-
-
 }
