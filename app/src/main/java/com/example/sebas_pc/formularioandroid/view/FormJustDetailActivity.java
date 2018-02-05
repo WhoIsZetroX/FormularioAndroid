@@ -48,7 +48,7 @@ public class FormJustDetailActivity extends AppCompatActivity {
                         tvContent.setText(formulario.toString());
                         tvContent2.setClickable(true);
                         tvContent2.setMovementMethod(LinkMovementMethod.getInstance());
-                        tvContent2.setText(Html.fromHtml("<a href='" + formulario.AQimg + "'> IMAGEN </a>"));
+                        tvContent2.setText(Html.fromHtml("<a href='" + formulario.ARimg + "'> IMAGEN </a>"));
                     }
 
                     @Override

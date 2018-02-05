@@ -23,12 +23,13 @@ public class Formulario {
     public String AMtipus;
     public String ANtipusF;
     public String AOobservaciones;
-    public String AQimg;
+    public boolean AQcheck;
+    public String ARimg;
 
 
     public Formulario(String dhForm, String id_movil, String DNI, String nombre, String apellidos,
                       String inici, String fi, String hores, String destinatari, String ambit,
-                      String familiar, String tipus, String tipusF, String img) {
+                      String familiar, String tipus, String tipusF, Boolean check, String img) {
 
         this.AAdhForm = dhForm;
         this.ABid_movil = id_movil;
@@ -43,8 +44,8 @@ public class Formulario {
         this.ALfamiliar = familiar;
         this.AMtipus = tipus;
         this.ANtipusF = tipusF;
-        this.AQimg = img;
-
+        this.AQcheck = check;
+        this.ARimg = img;
     }
 
     public Formulario(String postKey, String dni, String nombre, String apellidos){
@@ -60,7 +61,7 @@ public class Formulario {
 
     @Override
     public String toString(){
-        return "  \nFormulario #"
+        return "  \nFormulario"
                 + "\n   --------------"
                 + "\n1- " + AAdhForm
                 + "\n2- " + ABid_movil
@@ -80,7 +81,7 @@ public class Formulario {
     }
 
     public String toString2(){
-        return "  \nFormulario #"
+        return "  \nFormulario"
                 + "\n   --------------"
                 + "\n1- " + AAdhForm
                 + "\n4- " + ADnombre
