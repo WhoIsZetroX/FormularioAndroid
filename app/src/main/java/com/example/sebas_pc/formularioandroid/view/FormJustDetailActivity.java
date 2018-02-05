@@ -25,7 +25,7 @@ public class FormJustDetailActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_form_view_just);
+        setContentView(R.layout.activity_form_just_detail);
 
         tvContent = findViewById(R.id.tvContent);
         tvContent2 = findViewById(R.id.tvContent2);

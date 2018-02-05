@@ -149,6 +149,7 @@ public class FormViewActivity extends AppCompatActivity {
                 Intent intent = new Intent(FormViewActivity.this, JustFormActivity.class);
                 intent.putExtra("formId", formId);
                 startActivity(intent);
+                finish();
             }
         });
 
