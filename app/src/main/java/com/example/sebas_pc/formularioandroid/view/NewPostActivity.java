@@ -457,7 +457,11 @@ public class NewPostActivity extends AppCompatActivity implements View.OnClickLi
                             Uri downloadUrl = taskSnapshot.getDownloadUrl();
                             formulario.ARimg = downloadUrl.toString();
 
-                            if (check == true){
+                            if (check == false){
+                                return;
+                            }
+
+                            else if (check == true){
                                 FirebaseDatabase.getInstance().getReference().child("formularios_justificados").child(formId).setValue(formulario);
 
                             } else {
@@ -469,7 +473,12 @@ public class NewPostActivity extends AppCompatActivity implements View.OnClickLi
                         @Override
                         public void onFailure(@NonNull Exception exception) {
                             formulario.ARimg = null;
-                            if (check == true){
+
+                            if (check == false){
+                                return;
+                            }
+
+                            else if (check == true){
                                 FirebaseDatabase.getInstance().getReference().child("formularios_justificados").child(formId).setValue(formulario);
 
                             } else {
@@ -481,11 +490,11 @@ public class NewPostActivity extends AppCompatActivity implements View.OnClickLi
 
         } else {
             formulario.ARimg = "null";
-            if (check == true){
-                FirebaseDatabase.getInstance().getReference().child("formularios_justificados").child(formId).setValue(formulario);
-
-            } else {
+            if (check==false){
                 FirebaseDatabase.getInstance().getReference().child("formularios_noJustificados").child(formId).setValue(formulario);
+            }
+            else if (check == true){
+                return;
             }
         }
         //String formId = FirebaseDatabase.getInstance().getReference().child("formularios").push().getKey();

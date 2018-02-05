@@ -266,8 +266,4 @@ public class JustFormActivity extends AppCompatActivity {
         super.onResume();
         setPicture();
     }
-
-
-
-
 }
