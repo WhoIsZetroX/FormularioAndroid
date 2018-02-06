@@ -32,22 +32,17 @@ import java.util.List;
 
 public class FormNullActivity extends AppCompatActivity {
 
+    // Creamos las variables
     FirebaseRecyclerAdapter mAdapter;
-    public String deviceName;
     public String id;
-    public String idTel;
-    public int num = 1;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_form_null);
-        num = 1;
-        deviceName = android.os.Build.MANUFACTURER + " " + android.os.Build.MODEL;
-        id = android.provider.Settings.Secure.getString(getContentResolver(), android.provider.Settings.Secure.ANDROID_ID);
-        idTel = deviceName + " " + id;
 
+        // Creamos la consulta para la base de datos. en este caso mostraremos
+        // TODOS los formularios anulados
         Query postsQuery = FirebaseDatabase.getInstance().getReference().child("formularios_anulados");
 
         FirebaseRecyclerOptions options = new FirebaseRecyclerOptions.Builder<Formulario>()
@@ -59,8 +54,9 @@ public class FormNullActivity extends AppCompatActivity {
             public PostViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
                 LayoutInflater inflater = LayoutInflater.from(viewGroup.getContext());
                 return new PostViewHolder(inflater.inflate(R.layout.item_post, viewGroup, false));
+                // Le decimos que use la clase "PostViewHolder" como referencia para poner los items
+                // Y que use el xml de "item_post" para saber como colocarse
             }
-
 
             @Override
             protected void onBindViewHolder(final PostViewHolder viewHolder, int position, final Formulario form) {
@@ -116,13 +112,16 @@ public class FormNullActivity extends AppCompatActivity {
         super.onPause();
     }
 
+    // Estos son los 3 puntitos que salen arriba a la deerecha que sirven para cerrar sesión,
+    // con este metodo lo creamos
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_entry, menu);
         return true;
     }
 
-    //Metodo para cerrar la sesion
+    //Metodo donde colocamos lo que aparecerá lo que nosotros queramos que salga en los 3 puntitos,
+    // en este caso solo hemos puesto para cerrar la sesion
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 

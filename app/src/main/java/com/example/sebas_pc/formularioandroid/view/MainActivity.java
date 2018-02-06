@@ -73,7 +73,7 @@ public class MainActivity extends AppCompatActivity  {
 
                 viewHolder.tvContent.setText(form.toString2());
 
-                //Mostrar imagen
+                // Así se mostraría la imagen
                 //Glide.with(MainActivity.this).load(post.img).into(viewHolder.ivContent);
 
                 viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
