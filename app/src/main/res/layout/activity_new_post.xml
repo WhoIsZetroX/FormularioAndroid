@@ -157,6 +157,7 @@
                                 android:id="@+id/efecha"
                                 android:layout_width="match_parent"
                                 android:paddingEnd="10dp"
+                                android:paddingLeft="5dp"
                                 android:layout_height="37dp"
                                 android:layout_marginLeft="15dp"
                                 android:layout_marginTop="24dp"
@@ -193,6 +194,7 @@
                             <TextView
                                 android:id="@+id/efecha2"
                                 android:layout_width="match_parent"
+                                android:paddingLeft="5dp"
                                 android:paddingEnd="10dp"
                                 android:layout_height="37dp"
                                 android:layout_marginLeft="15dp"

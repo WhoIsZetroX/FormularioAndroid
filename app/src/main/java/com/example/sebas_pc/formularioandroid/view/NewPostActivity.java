@@ -365,7 +365,7 @@ public class NewPostActivity extends AppCompatActivity implements View.OnClickLi
         String apellidos = ((EditText) findViewById(R.id.et_personlastName)).getText().toString();
         String inici = ((TextView) findViewById(R.id.efecha)).getText().toString();
 
-        String fi = ((EditText) findViewById(R.id.efecha2)).getText().toString();
+        String fi = ((TextView) findViewById(R.id.efecha2)).getText().toString();
         String hores = ((EditText) findViewById(R.id.hores)).getText().toString();
         String destinatari = ((Spinner) findViewById(R.id.dest)).getSelectedItem().toString();
         String area = ((Spinner) findViewById(R.id.area)).getSelectedItem().toString();
@@ -505,7 +505,7 @@ public class NewPostActivity extends AppCompatActivity implements View.OnClickLi
         String name_m = ((EditText) findViewById(R.id.et_personName)).getText().toString();
         String lastName_m = ((EditText) findViewById(R.id.et_personlastName)).getText().toString();
         String inici_m = ((TextView) findViewById(R.id.efecha)).getText().toString();
-        String fi_m = ((EditText) findViewById(R.id.efecha2)).getText().toString();
+        String fi_m = ((TextView) findViewById(R.id.efecha2)).getText().toString();
         String hores_m = ((EditText) findViewById(R.id.hores)).getText().toString();
         String dest_m = ((Spinner) findViewById(R.id.dest)).getSelectedItem().toString();
         String area_m = ((Spinner) findViewById(R.id.area)).getSelectedItem().toString();
@@ -516,7 +516,6 @@ public class NewPostActivity extends AppCompatActivity implements View.OnClickLi
         String observacions_m = ((EditText) findViewById(R.id.editTextObs)).getText().toString();
         boolean check_m = ((CheckBox) findViewById(R.id.checkBox)).isChecked();
         //String imagenmostrar   = your_message.getText().toString();
-
 
         //Hacemos un intento llamado sendEmail para el envio de datos
         Intent sendEmail = new Intent(android.content.Intent.ACTION_SEND);
