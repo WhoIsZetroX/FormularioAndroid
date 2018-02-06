@@ -49,9 +49,14 @@ import com.google.firebase.storage.UploadTask;
 
 import java.io.File;
 import java.io.IOException;
+import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Locale;
 
 public class NewPostActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -367,8 +372,7 @@ public class NewPostActivity extends AppCompatActivity implements View.OnClickLi
         String nombre = ((EditText) findViewById(R.id.et_personName)).getText().toString();
         String apellidos = ((EditText) findViewById(R.id.et_personlastName)).getText().toString();
         String inici = ((TextView) findViewById(R.id.efecha)).getText().toString();
-
-        String fi = ((EditText) findViewById(R.id.efecha2)).getText().toString();
+        String fi = ((TextView) findViewById(R.id.efecha2)).getText().toString();
         String hores = ((EditText) findViewById(R.id.hores)).getText().toString();
         String destinatari = ((Spinner) findViewById(R.id.dest)).getSelectedItem().toString();
         String area = ((Spinner) findViewById(R.id.area)).getSelectedItem().toString();
@@ -384,45 +388,31 @@ public class NewPostActivity extends AppCompatActivity implements View.OnClickLi
             ((EditText) findViewById(R.id.et_persondni)).setError("El DNI es obligatori.");
             ((EditText) findViewById(R.id.et_persondni)).requestFocus();
             return;
+        } else if (TextUtils.isEmpty(nombre)) {
+            ((EditText) findViewById(R.id.et_personName)).setError("El nom es obligatori.");
+            ((EditText) findViewById(R.id.et_personName)).requestFocus();
+            return;
+        } else if (TextUtils.isEmpty(apellidos)) {
+            ((EditText) findViewById(R.id.et_personlastName)).setError("El cognom es obligatori.");
+            ((EditText) findViewById(R.id.et_personlastName)).requestFocus();
+            return;
+        } else if (TextUtils.isEmpty(hores)) {
+            ((EditText) findViewById(R.id.hores)).setError("El num d'hores es obligatori.");
+            ((EditText) findViewById(R.id.hores)).requestFocus();
+            return;
+        } else if (TextUtils.isEmpty(inici)) {
+            ((TextView) findViewById(R.id.efecha)).setError("La fecha es obligatoria.");
+            ((TextView) findViewById(R.id.efecha)).requestFocus();
+            Toast.makeText(NewPostActivity.this,
+                    "La fecha es obligatoria", Toast.LENGTH_LONG).show();
+            return;
+        } else if (TextUtils.isEmpty(fi)) {
+            ((TextView) findViewById(R.id.efecha2)).setError("La fecha es obligatoria.");
+            ((TextView) findViewById(R.id.efecha2)).requestFocus();
+            Toast.makeText(NewPostActivity.this,
+                    "La fecha es obligatoria", Toast.LENGTH_LONG).show();
+            return;
         }
-
-                /*
-                if (TextUtils.isEmpty(name)){
-                    nombre.setError("El nom es obligatori.");
-                    nombre.requestFocus();
-                    return;
-                }
-
-                if (TextUtils.isEmpty(lastName)){
-                    apellido.setError("El cognom es obligatori.");
-                    apellido.requestFocus();
-                    return;
-                }
-
-                if (TextUtils.isEmpty(hores)){
-                    horas.setError("El num d'hores es obligatori.");
-                    horas.requestFocus();
-                    return;
-                }
-
-                if (TextUtils.isEmpty(dest)){
-                    destino.setError("El destinatari es obligatori.");
-                    destino.requestFocus();
-                    return;
-                }
-
-                if (TextUtils.isEmpty(familiar)){
-                    family.setError("El num d'hores es obligatori.");
-                    family.requestFocus();
-                    return;
-                }
-
-                if (TextUtils.isEmpty(descripcio)){
-                    descripcion.setError("La descripció es obligatoria.");
-                    descripcion.requestFocus();
-                    return;
-                }
-                */
 
         ///////////
         final Formulario formulario = new Formulario();
@@ -508,7 +498,7 @@ public class NewPostActivity extends AppCompatActivity implements View.OnClickLi
         String name_m = ((EditText) findViewById(R.id.et_personName)).getText().toString();
         String lastName_m = ((EditText) findViewById(R.id.et_personlastName)).getText().toString();
         String inici_m = ((TextView) findViewById(R.id.efecha)).getText().toString();
-        String fi_m = ((EditText) findViewById(R.id.efecha2)).getText().toString();
+        String fi_m = ((TextView) findViewById(R.id.efecha2)).getText().toString();
         String hores_m = ((EditText) findViewById(R.id.hores)).getText().toString();
         String dest_m = ((Spinner) findViewById(R.id.dest)).getSelectedItem().toString();
         String area_m = ((Spinner) findViewById(R.id.area)).getSelectedItem().toString();

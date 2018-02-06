@@ -21,38 +21,50 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 public class FormViewActivity extends AppCompatActivity {
+    // Creamos las variables
     Formulario formulari = new Formulario();
     TextView tvContent, tvContent2;
     public String form;
     private DatabaseReference mDatabase;
     FloatingActionButton fab1, fab2;
+    Intent intent;
+    Bundle bundle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_form_view);
-        tvContent = findViewById(R.id.tvContent);
-        tvContent2 = findViewById(R.id.tvContent2);
-        fab1 = findViewById(R.id.justificar);
-        fab2 = findViewById(R.id.eliminar);
 
-        Intent intent = getIntent();
-        Bundle bundle = intent.getExtras();
+        // Vinculamos las variables con los objetos de la app con los findViewById
+        findViews();
 
-        if(bundle!=null)
-        {
-            form =(String) bundle.get("formId");
+        // Pillamos los datos que pasamos de la anterior activity que en este caso es la key del formulario
+        intent = getIntent();
+        bundle = intent.getExtras();
+
+        // Si los datos que recoge de la anterior activity no son nulos se lo asignaremos a la variable "form"
+        if (bundle != null) {
+            // Si el contenido no es nulo pillamos la id
+            form = (String) bundle.get("formId");
         }
-        mDatabase = FirebaseDatabase.getInstance().getReference();
 
+        // Creamos una variable final con la key
         final String formId = form;
+
+        // Hacemos una consulta a la base de datos y hacemos que pille todos los formularios
+        // no justificados
+        mDatabase = FirebaseDatabase.getInstance().getReference();
         mDatabase.child("formularios_noJustificados").child(formId).addListenerForSingleValueEvent(
                 new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
-                        // Get user value
+                        // Pillamos los datos del formulario actual
                         Formulario formulario = dataSnapshot.getValue(Formulario.class);
+
+                        // Metemos todos los datos del formulario actual
                         tvContent.setText(formulario.toString());
+
+                        // En caso de que la imagen sea nula
                         if (formulario.ARimg.equals("null")) {
                             tvContent2.setText(" ");
 
@@ -177,4 +189,12 @@ public class FormViewActivity extends AppCompatActivity {
             }
         });
     }
+
+    void findViews() {
+        tvContent = findViewById(R.id.tvContent);
+        tvContent2 = findViewById(R.id.tvContent2);
+        fab1 = findViewById(R.id.justificar);
+        fab2 = findViewById(R.id.eliminar);
+    }
+
 }

@@ -183,7 +183,7 @@ public class JustFormActivity extends AppCompatActivity {
                                 final String formIdA = FirebaseDatabase.getInstance().getReference().child("formularios_justificados").push().getKey();
                                 FirebaseDatabase.getInstance().getReference().child("formularios_justificados").child(formIdA).setValue(formulari);
                                 mDatabase.child("formularios_noJustificados").child(formId).removeValue();
-                                finish();//TODO: hacer que vaya a la main
+                                finish();
                             }
                         })
                         .setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
