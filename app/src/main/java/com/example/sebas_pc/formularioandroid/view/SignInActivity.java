@@ -18,6 +18,7 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.Arrays;
 
+
 public class SignInActivity extends AppCompatActivity {
     private static final int RC_SIGN_IN = 123;
     @Override
@@ -32,6 +33,8 @@ public class SignInActivity extends AppCompatActivity {
         });
         comeIn();
     }
+
+    //conecta con firebase
     void comeIn(){
         FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
         if (firebaseUser != null) {
@@ -43,6 +46,8 @@ public class SignInActivity extends AppCompatActivity {
             finish();
         }
     }
+
+    //metodo para iniciar sesion
     void signIn(){
         startActivityForResult(
                 AuthUI.getInstance().createSignInIntentBuilder()
