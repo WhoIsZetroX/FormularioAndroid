@@ -385,26 +385,29 @@ public class NewPostActivity extends AppCompatActivity implements View.OnClickLi
             ((EditText) findViewById(R.id.et_persondni)).setError("El DNI es obligatori.");
             ((EditText) findViewById(R.id.et_persondni)).requestFocus();
             return;
-        }
-        if (TextUtils.isEmpty(nombre)) {
+        } else if (TextUtils.isEmpty(nombre)) {
             ((EditText) findViewById(R.id.et_personName)).setError("El nom es obligatori.");
             ((EditText) findViewById(R.id.et_personName)).requestFocus();
             return;
-        }
-        if (TextUtils.isEmpty(apellidos)) {
+        } else if (TextUtils.isEmpty(apellidos)) {
             ((EditText) findViewById(R.id.et_personlastName)).setError("El cognom es obligatori.");
             ((EditText) findViewById(R.id.et_personlastName)).requestFocus();
             return;
-        }
-        if (TextUtils.isEmpty(hores)) {
+        } else if (TextUtils.isEmpty(hores)) {
             ((EditText) findViewById(R.id.hores)).setError("El num d'hores es obligatori.");
             ((EditText) findViewById(R.id.hores)).requestFocus();
             return;
-        }
-
-        if (TextUtils.isEmpty(inici)) {
+        } else if (TextUtils.isEmpty(inici)) {
             ((TextView) findViewById(R.id.efecha)).setError("La fecha es obligatoria.");
-            ((TextView) findViewById(R.id.efecha)).requestFocus(); //TODO: Meter una tostada xd (Meter un Toast).
+            ((TextView) findViewById(R.id.efecha)).requestFocus();
+            Toast.makeText(NewPostActivity.this,
+                    "La fecha es obligatoria", Toast.LENGTH_LONG).show();
+            return;
+        } else if (TextUtils.isEmpty(fi)) {
+            ((TextView) findViewById(R.id.efecha2)).setError("La fecha es obligatoria.");
+            ((TextView) findViewById(R.id.efecha2)).requestFocus();
+            Toast.makeText(NewPostActivity.this,
+                    "La fecha es obligatoria", Toast.LENGTH_LONG).show();
             return;
         }
 
