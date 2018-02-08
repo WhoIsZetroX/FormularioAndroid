@@ -34,16 +34,22 @@ public class FormNullActivity extends AppCompatActivity {
 
     // Creamos las variables
     FirebaseRecyclerAdapter mAdapter;
-    public String id;
+    public String id, deviceName, id2, idTel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_form_null);
 
+       /* deviceName = android.os.Build.MANUFACTURER + " " + android.os.Build.MODEL;
+        id2=android.provider.Settings.Secure.getString(getContentResolver(), android.provider.Settings.Secure.ANDROID_ID);
+        idTel = deviceName+" "+id2;*/
+
         // Creamos la consulta para la base de datos. en este caso mostraremos
         // TODOS los formularios anulados
+
         Query postsQuery = FirebaseDatabase.getInstance().getReference().child("formularios_anulados");
+        //Query postsQuery2 = FirebaseDatabase.getInstance().getReference().child("formularios_anulados").equalTo();
 
         FirebaseRecyclerOptions options = new FirebaseRecyclerOptions.Builder<Formulario>()
                 .setQuery(postsQuery, Formulario.class)
@@ -67,13 +73,18 @@ public class FormNullActivity extends AppCompatActivity {
                 //final String postKey = getRef(position).getKey();
                 //if (FirebaseDatabase.getInstance().getReference().child("formularios").child(postKey).child("id_movil").equals(idTel)) {
 
+                // Pillamos la key del formulario
                 final String postKey = getRef(position).getKey();
 
+                // Almacenamos los datos del formulario de la base en una variable de tipo
+                // formulario y añadimos los datos en un textView
                 viewHolder.tvContent.setText(form.toString2());
 
                 //Mostrar imagen
                 //Glide.with(MainActivity.this).load(post.img).into(viewHolder.ivContent);
 
+                // Añadimos un click listener para hacer que cuando se clicque a ese formulario
+                // se vaya otra activity para presentarnos información más detallada
                 viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
@@ -85,9 +96,11 @@ public class FormNullActivity extends AppCompatActivity {
             }
         };
 
+        // Le añadimos al recyvler view los datos
         RecyclerView recycler = findViewById(R.id.recyclerview);
         recycler.setLayoutManager(new LinearLayoutManager(this));
         recycler.setAdapter(mAdapter);
+
     }
 
 

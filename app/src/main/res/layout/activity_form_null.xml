@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     tools:context="com.example.sebas_pc.formularioandroid.view.FormNullActivity">
 
-
+    <!-- RecyvlerView para colocar todos los formularios -->
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recyclerview"
         android:layout_width="match_parent"

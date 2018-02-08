@@ -6,20 +6,25 @@
     android:layout_height="match_parent"
     tools:context="com.example.sebas_pc.formularioandroid.view.FormNullDetailActivity">
 
+    <!-- ScrollView sirve para poder bajar más abajo del limite de la pantalla
+       para poder poner muchas más cosas -->
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+        <!-- Aqui se define como se colocarán los elementos -->
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
+            <!-- Aqui se almcenarán todos los datos del formulario menos la imagen -->
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/tvContent" />
 
+            <!-- Aqui se almcenará el link de la imagen -->
             <TextView
                 android:id="@+id/tvContent2"
                 android:layout_width="wrap_content"
