@@ -41,7 +41,7 @@
 
                 <Button
                     android:id="@+id/button_cameraF"
-                    android:text="Take a picture!"
+                    android:text="Capturar Foto!"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
 
@@ -51,29 +51,22 @@
                     android:layout_height="wrap_content"
                     app:srcCompat="@android:drawable/ic_input_add" />
 
-                <Button
-                    android:id="@+id/btn_save_modified"
-                    android:layout_width="325dp"
-                    android:layout_height="38dp"
-                    android:layout_marginTop="20dp"
-                    android:background="@color/colorPrimary"
-                    android:text="Enviar"
-                    android:textAlignment="center"
-                    android:textColor="@android:color/background_light" />
-
             </LinearLayout>
 
             <LinearLayout
-                android:layout_marginTop="20dp"
                 android:orientation="vertical"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
 
                 <Button
                     android:id="@+id/btnEnviar"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Enviar" />
+                    android:layout_width="325dp"
+                    android:layout_height="38dp"
+                    android:background="@color/colorPrimary"
+                    android:text="Enviar"
+                    android:textAlignment="center"
+                    android:textColor="@android:color/background_light" />
+
             </LinearLayout>
         </LinearLayout>
 
