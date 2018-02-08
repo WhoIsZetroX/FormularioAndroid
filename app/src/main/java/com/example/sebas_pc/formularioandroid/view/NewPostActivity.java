@@ -320,6 +320,7 @@ public class NewPostActivity extends AppCompatActivity implements View.OnClickLi
     @Override
     public void onClick(View v) {
         if (v == bfecha || v == efecha) {
+
             Calendar calendar = Calendar.getInstance();
             int dia = calendar.get(Calendar.YEAR);
             int mes = calendar.get(Calendar.MONTH);
@@ -347,6 +348,7 @@ public class NewPostActivity extends AppCompatActivity implements View.OnClickLi
             }
                     , dia, mes, ano);
             datePickerDialog.show();
+
         } else if (v == camera) {
             if (checkPermission()) {
                 //If your app has access to the device’s storage, then print the following message to Android Studio’s Logcat//
@@ -359,8 +361,8 @@ public class NewPostActivity extends AppCompatActivity implements View.OnClickLi
         } else if (v == save) {
             enviarForm();
         }
-
     }
+
 
     public void enviarForm() {
         String dhForm = this.dhForm;
@@ -379,7 +381,6 @@ public class NewPostActivity extends AppCompatActivity implements View.OnClickLi
         String tipusF = ((Spinner) findViewById(R.id.finalT)).getSelectedItem().toString();
         String observaciones = ((EditText) findViewById(R.id.editTextObs)).getText().toString();
         final boolean check = ((CheckBox) findViewById(R.id.checkBox)).isChecked();
-
 
         if (TextUtils.isEmpty(dni)) {
             ((EditText) findViewById(R.id.et_persondni)).setError("El DNI es obligatori.");
