@@ -59,8 +59,11 @@ public class FormNullDetailActivity extends AppCompatActivity {
                         // Almacenamos los datos del formulario de la base en una variable de tipo
                         // formulario y añadimos los datos en un textView
                         Formulario formulario = dataSnapshot.getValue(Formulario.class);
-                        tvContent.setText(formulario.toString());
-
+                        if (formulario.ALfamiliar.equals("null") || formulario.ALfamiliar.equals("") || formulario.ALfamiliar.equals(" ")) {
+                            tvContent.setText(formulario.toString());
+                        } else {
+                            tvContent.setText(formulario.familiar());
+                        }
                         // Esta parte es otro textView para poder poner un link que te redireccione
                         // a la imagen pero haciendo que se vea en el navegador
                         tvContent2.setClickable(true);

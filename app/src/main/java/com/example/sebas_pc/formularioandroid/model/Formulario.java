@@ -74,6 +74,25 @@ public class Formulario {
                 + "\n9- " + AIdestinatari
                 + "\n10- " + AJarea
                 + "\n11- " + AKambit
+                + "\n13- " + AMtipus
+                + "\n14- " + ANtipusF
+                + "\n   --------------\n\n";
+    }
+
+    public String familiar() {
+        return "  \nFormulario"
+                + "\n   --------------"
+                + "\n1- " + AAdhForm
+                + "\n2- " + ABid_movil
+                + "\n3- " + ACdNI
+                + "\n4- " + ADnombre
+                + "\n5- " + AEapellidos
+                + "\n6- " + AFinici
+                + "\n7- " + AGfi
+                + "\n8- " + AHhores
+                + "\n9- " + AIdestinatari
+                + "\n10- " + AJarea
+                + "\n11- " + AKambit
                 + "\n12- " + ALfamiliar
                 + "\n13- " + AMtipus
                 + "\n14- " + ANtipusF
