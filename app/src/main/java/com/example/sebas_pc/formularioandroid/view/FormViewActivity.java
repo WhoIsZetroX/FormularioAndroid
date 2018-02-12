@@ -62,8 +62,11 @@ public class FormViewActivity extends AppCompatActivity {
                         Formulario formulario = dataSnapshot.getValue(Formulario.class);
 
                         // Metemos todos los datos del formulario actual
-                        tvContent.setText(formulario.toString());
-
+                        if (formulario.ALfamiliar.equals("null") || formulario.ALfamiliar.equals("") || formulario.ALfamiliar.equals(" ")) {
+                            tvContent.setText(formulario.toString());
+                        } else {
+                            tvContent.setText(formulario.familiar());
+                        }
                         // En caso de que la imagen sea nula
                         if (formulario.ARimg.equals("null")) {
                             tvContent2.setText(" ");

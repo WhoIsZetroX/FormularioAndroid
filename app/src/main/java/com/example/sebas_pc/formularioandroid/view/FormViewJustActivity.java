@@ -33,14 +33,12 @@ public class FormViewJustActivity extends AppCompatActivity {
     public String deviceName;
     public String id;
     public String idTel;
-    public int num = 1;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_form_view_just);
-        num = 1;
         deviceName = android.os.Build.MANUFACTURER + " " + android.os.Build.MODEL;
         id = android.provider.Settings.Secure.getString(getContentResolver(), android.provider.Settings.Secure.ANDROID_ID);
         idTel = deviceName + " " + id;
@@ -83,6 +81,7 @@ public class FormViewJustActivity extends AppCompatActivity {
                         startActivity(intent);
                     }
                 });
+
             }
         };
 

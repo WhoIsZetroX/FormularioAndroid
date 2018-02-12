@@ -187,7 +187,6 @@ public class NewPostActivity extends AppCompatActivity implements View.OnClickLi
     }
 
     @Override
-    // nos dice si nos acepta o declina el permiso
     public void onRequestPermissionsResult(int requestCode, String permissions[], int[] grantResults) {
         switch (requestCode) {
             case PERMISSION_REQUEST_CODE:
@@ -208,22 +207,21 @@ public class NewPostActivity extends AppCompatActivity implements View.OnClickLi
         ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.CAMERA, Manifest.permission.READ_EXTERNAL_STORAGE}, PERMISSION_REQUEST_CODE);
 
     }
-// con este método se revisan los permisos
+
     private boolean checkPermission() {
         //Check for READ_EXTERNAL_STORAGE access, using ContextCompat.checkSelfPermission()//
         int result = ContextCompat.checkSelfPermission(NewPostActivity.this, Manifest.permission.READ_EXTERNAL_STORAGE);
         int result2 = ContextCompat.checkSelfPermission(NewPostActivity.this, Manifest.permission.CAMERA);
 
-        //si la app tiene este permiso, retorna true
+        //If the app does have this permission, then return true//
         if (result == PackageManager.PERMISSION_GRANTED || result2 == PackageManager.PERMISSION_GRANTED) {
             return true;
         } else {
-            //si la app no tiene este permiso, retorna falso
+            //If the app doesn’t have this permission, then return false//
             return false;
         }
     }
 
-    // con este metodo se hacen las fotos cuando le das al botón
     void dispatchTakePictureIntent() {
         File dir = getExternalFilesDir(Environment.DIRECTORY_PICTURES);
         dir.mkdir();
@@ -258,7 +256,6 @@ public class NewPostActivity extends AppCompatActivity implements View.OnClickLi
         }
     }
 
-    // con este metodo se hace la foto
     void setPicture() {
         if (photoPath != null && !photoPath.isEmpty()) {
             LinearLayout view_instance = findViewById(R.id.ll);
@@ -271,7 +268,6 @@ public class NewPostActivity extends AppCompatActivity implements View.OnClickLi
         }
 
     }
-
 
     @Override
     public void onSaveInstanceState(Bundle outState) {
@@ -293,8 +289,6 @@ public class NewPostActivity extends AppCompatActivity implements View.OnClickLi
         setPicture();
     }
 
-
-    //metodo donde guardamos todos los findviews
     void findViews() {
         //datePicker = findViewById(R.id.datePicker);
         //iniciData = findViewById(R.id.iniciData);
@@ -314,7 +308,6 @@ public class NewPostActivity extends AppCompatActivity implements View.OnClickLi
         finalT = findViewById(R.id.finalT);
     }
 
-    //metodo donde tenemos todos los onclickslistener
     public void setOnClicks() {
         bfecha.setOnClickListener(this);
         bfecha2.setOnClickListener(this);
@@ -324,12 +317,10 @@ public class NewPostActivity extends AppCompatActivity implements View.OnClickLi
         save.setOnClickListener(this);
     }
 
-
-
-    //
     @Override
     public void onClick(View v) {
         if (v == bfecha || v == efecha) {
+
             Calendar calendar = Calendar.getInstance();
             int dia = calendar.get(Calendar.YEAR);
             int mes = calendar.get(Calendar.MONTH);
@@ -357,6 +348,7 @@ public class NewPostActivity extends AppCompatActivity implements View.OnClickLi
             }
                     , dia, mes, ano);
             datePickerDialog.show();
+
         } else if (v == camera) {
             if (checkPermission()) {
                 //If your app has access to the device’s storage, then print the following message to Android Studio’s Logcat//
@@ -369,10 +361,9 @@ public class NewPostActivity extends AppCompatActivity implements View.OnClickLi
         } else if (v == save) {
             enviarForm();
         }
-
     }
 
-    //este metodo define los campos que envia el formulario
+
     public void enviarForm() {
         String dhForm = this.dhForm;
         String id_movil = idMovil;
@@ -391,27 +382,22 @@ public class NewPostActivity extends AppCompatActivity implements View.OnClickLi
         String observaciones = ((EditText) findViewById(R.id.editTextObs)).getText().toString();
         final boolean check = ((CheckBox) findViewById(R.id.checkBox)).isChecked();
 
-        //si no pones dni, salta el siguiente error
         if (TextUtils.isEmpty(dni)) {
             ((EditText) findViewById(R.id.et_persondni)).setError("El DNI es obligatori.");
             ((EditText) findViewById(R.id.et_persondni)).requestFocus();
             return;
-            //si no pones nombre, salta el siguiente error
         } else if (TextUtils.isEmpty(nombre)) {
             ((EditText) findViewById(R.id.et_personName)).setError("El nom es obligatori.");
             ((EditText) findViewById(R.id.et_personName)).requestFocus();
             return;
-            //si no pones apellido, salta el siguiente error
         } else if (TextUtils.isEmpty(apellidos)) {
             ((EditText) findViewById(R.id.et_personlastName)).setError("El cognom es obligatori.");
             ((EditText) findViewById(R.id.et_personlastName)).requestFocus();
             return;
-            //si no pones horas, salta el siguiente error
         } else if (TextUtils.isEmpty(hores)) {
             ((EditText) findViewById(R.id.hores)).setError("El num d'hores es obligatori.");
             ((EditText) findViewById(R.id.hores)).requestFocus();
             return;
-            //si no pones fecha, salta el siguiente error
         } else if (TextUtils.isEmpty(inici)) {
             ((TextView) findViewById(R.id.efecha)).setError("La fecha es obligatoria.");
             ((TextView) findViewById(R.id.efecha)).requestFocus();
@@ -445,7 +431,7 @@ public class NewPostActivity extends AppCompatActivity implements View.OnClickLi
         formulario.AOobservaciones = observaciones;
         formulario.AQcheck = check;
 
-//si hay foto, que la envie
+
         if (photoConf) {
             StorageReference mStorageRef;
 
@@ -465,10 +451,10 @@ public class NewPostActivity extends AppCompatActivity implements View.OnClickLi
                             if (check == false){
                                 return;
                             }
-                            // si hay foto, se envia a formularios justificados
+
                             else if (check == true){
                                 FirebaseDatabase.getInstance().getReference().child("formularios_justificados").child(formId).setValue(formulario);
-                            // si no hay foto, se envia a formularios no justificados
+
                             } else {
                                 FirebaseDatabase.getInstance().getReference().child("formularios_noJustificados").child(formId).setValue(formulario);
                             }
@@ -527,7 +513,7 @@ public class NewPostActivity extends AppCompatActivity implements View.OnClickLi
         Intent sendEmail = new Intent(android.content.Intent.ACTION_SEND);
 
         String subject = ("Solicitud Formulario: " + this.dhForm);
-    //si el ambito es familiar se envian estos datos
+
         if (ambit.equals("Familiar")) {
             // Se llena con datos
             sendEmail.setType("plain/text");

@@ -70,7 +70,13 @@ public class JustFormActivity extends AppCompatActivity {
                     public void onDataChange(DataSnapshot dataSnapshot) {
                         // Get user value
                         Formulario formulario = dataSnapshot.getValue(Formulario.class);
-                        tvContent.setText(formulario.toString());
+
+                        if (formulario.ALfamiliar.equals("null") || formulario.ALfamiliar.equals("") || formulario.ALfamiliar.equals(" ")) {
+                            tvContent.setText(formulario.toString());
+                        } else {
+                            tvContent.setText(formulario.familiar());
+                        }
+
                         if (formulario.ARimg.equals("null")) {
                             tvContent2.setText(" ");
 
